@@ -1,7 +1,6 @@
 <template>
 	<div id="home">
 		<Head></Head>
-		sdjkasdk
 	</div>
 </template>
 
