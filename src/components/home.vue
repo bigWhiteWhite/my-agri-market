@@ -1,15 +1,17 @@
 <template>
 	<div id="home">
 		<Head></Head>
+		<Content></Content>
 	</div>
 </template>
 
 <script>
 	import Head from './head/head.vue'
+	import Content from './contentFirst/content.vue'
 	export default {
 		name:'myhome',
 		components:{
-			Head
+			Head,Content
 		},
 		data(){
 			return{

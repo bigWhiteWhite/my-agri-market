@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import ViewUI from 'view-design';
+import ElementUI from 'element-ui';
 
 Vue.config.productionTip = false
 //配置myMixin
@@ -14,6 +15,18 @@ Vue.use( myMixin(['home']) );
 //使用view UI组件
 import 'view-design/dist/styles/iview.css';
 Vue.use(ViewUI);
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
+/* import './layui/css/layui.css'
+import './layui/layui.all.js' */
+
+Vue.directive('title', {//更改页面标题
+  inserted: function (el, binding) {
+    document.title = el.dataset.title
+  }
+})
+
 
 /* eslint-disable no-new */
 new Vue({
