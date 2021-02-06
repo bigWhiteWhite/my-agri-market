@@ -55,7 +55,6 @@
 				
 		</div>
 	</div>
-	
 	<contentNewest></contentNewest>
   </div>
 </template>
@@ -106,7 +105,6 @@ export default {
 	position: relative;
 	margin: 0 auto;
 	width: 100%;
-	height: 512px;
 	font-family: PingFangSC-Regular;
 	font-size: 14px;
 	letter-spacing: 0;

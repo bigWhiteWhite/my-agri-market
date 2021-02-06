@@ -1,17 +1,21 @@
 <template>
 	<div id="home">
 		<Head></Head>
-		<Content></Content>
+		<div id="content">
+			<contentFirst></contentFirst>
+			<contentTwo></contentTwo>
+		</div>
 	</div>
 </template>
 
 <script>
 	import Head from './head/head.vue'
-	import Content from './contentFirst/content.vue'
+	import contentFirst from './contentFirst/contentFirst.vue'
+	import contentTwo from './contentTwo/contentTwo.vue'
 	export default {
 		name:'myhome',
 		components:{
-			Head,Content
+			Head,contentFirst,contentTwo
 		},
 		data(){
 			return{
@@ -28,5 +32,8 @@
 	outline: none;
 	box-sizing: border-box;
 	border: none;
+	#content{
+		background-color: #f2f2f2;
+	}
 }
 </style>

@@ -4,7 +4,6 @@
 		<div class="top-nav-content">
 			<div class="top-nav-wrap">
 				<div class="top-title">
-					
 					<div class="top-title-text">欢迎来到农商平台</div>
 					<div class="login-div" >
 						<img src="//files.cnhnb.com/fas/home/img/9e2d99c.png" alt="" >
@@ -39,13 +38,12 @@
 		<div class="top-search">
 			<topSearchIner></topSearchIner>
 		</div>
-		<div class="top-fix"><!-- 回到顶部对象 -->
-			<el-backtop  :bottom="100">
-			    <div style="{height: 100%;background-color: #39bf3e;box-shadow: 0 0 6px rgba(0,0,0, .12);text-align: center;line-height: 40px;color: white;border-radius: 50% 50%;}">
-				顶部
-			    </div>
-		    </el-backtop>
-		</div>
+		
+		<el-backtop  :bottom="100"><!-- 回到顶部对象 -->
+		    <div style="{height: 100%;background-color: #39bf3e;box-shadow: 0 0 6px rgba(0,0,0, .12);text-align: center;line-height: 40px;color: white;border-radius: 50% 50%;}">
+			顶部
+		    </div>
+		</el-backtop>
   </div>
 </template>
 
@@ -150,5 +148,6 @@ export default {
 		background-color: #fff;
 		height: 123px;
 	}
+	
 }
 </style>

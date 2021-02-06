@@ -114,7 +114,6 @@ export default {
 					background-color: #f8f8f8;
 				}
 				li{
-					
 					display: -webkit-box;
 					display: flex;
 					-webkit-box-align: center;
