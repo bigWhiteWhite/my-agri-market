@@ -1,5 +1,5 @@
 <template>
-	<div class="swiper-container">
+	<div class="swiper-container"><!-- 最新采购 -->
 			<el-carousel  :autoplay="false" arrow="never"  trigger="click">
 				<el-carousel-item>
 					<a href="/caigou/1269529/" target="_blank" v-for="(item,index) in purchase" :key=item.id>

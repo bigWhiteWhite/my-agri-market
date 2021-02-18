@@ -1,7 +1,7 @@
 <template>
   <div class="content">
 	<div class="content-outSwiper">
-		<Carousel  loop  autoplay>
+		<Carousel  loop  autoplay><!-- content外面轮播图 -->
 		        <CarouselItem v-for="(item,index) in outSwiper" :key=item.id>
 		            <div class="demo-carousel">
 						<img :src="item.path" alt="">
@@ -34,7 +34,7 @@
 				   
 				</el-menu>
 			</div>
-			<div class="content-inSwiper-Swiper">
+			<div class="content-inSwiper-Swiper"><!-- content里面轮播图 -->
 				<Carousel  loop    :autoplay="setting.autoplay" radius-dot>
 				        <CarouselItem v-for="(item,index) in inSwiper" :key=item.id class='noaho02'>
 				            <div class="demo-carousel">
@@ -43,7 +43,7 @@
 				        </CarouselItem>
 				</Carousel>
 			</div>
-			<ul class="fruit-groom">
+			<ul class="fruit-groom"><!-- 批发等 -->
 				<li v-for="(item,index) in fruit" :key='item.id'>
 					<a href="/" target="_blank" >
 						<div>
@@ -55,6 +55,7 @@
 				
 		</div>
 	</div>
+	<!-- 最新供应等 -->
 	<contentNewest></contentNewest>
   </div>
 </template>
@@ -62,7 +63,7 @@
 <script>
 import contentNewest from './content-newest.vue'
 export default {
-	name: '',
+	name: 'contentFirst',
 	components:{
 		contentNewest
 	},

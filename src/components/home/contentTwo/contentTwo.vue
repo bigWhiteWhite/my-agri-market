@@ -27,7 +27,7 @@
 						<div class="recommend-right">
 							<div class="index-item-bg" v-for="(item,index) in recommed" :key=item.id >
 								<div class="product-v2">
-									<a href="/gongying/4003090/" target="_blank">
+									<router-link to="/shop" target="_blank">
 										<div class="data-imgs">
 											<img src="https://image.cnhnb.com/image/jpeg/head/2020/03/26/c7a0b75bb63f4fd88dbe06e923e67341.jpeg?imageView2/1/w/525/h/525/format/jpg/interlace/1/quality/100/ignore-error/1"class="s-img-default" data-v-490b5e9c="" data-src="https://image.cnhnb.com/image/jpeg/head/2020/03/26/c7a0b75bb63f4fd88dbe06e923e67341.jpeg?imageView2/1/w/525/h/525/format/jpg/interlace/1/quality/100/ignore-error/1"lazy="loaded">
 											<div class="vedio-icon"><img src="//files.cnhnb.com/fas/home/img/59b9079.png" alt=""></div>
@@ -58,7 +58,7 @@
 												莒南县
 											</div>
 										</div>
-									</a>
+									</router-link>
 								</div>
 							</div>
 						</div>
@@ -71,7 +71,7 @@
 
 <script>
 	export default {
-		name: '',
+		name: 'contentTwo',
 		data() {
 			return {
 				secondNameItem: [{id: "01",name: "活畜",title: "活畜"},
@@ -90,6 +90,11 @@
 							{id:"09"},
 							{id:"10"}]
 				
+			}
+		},
+		methods:{
+			toShop(){
+				this.$router.push({name:'shop'})
 			}
 		}
 	}

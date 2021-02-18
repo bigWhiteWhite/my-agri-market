@@ -1,14 +1,12 @@
 <template>
   <div id="app">
-	  <Home></Home>
+	  <router-view></router-view>
   </div>
 </template>
 
 <script>
-	import Home from './components/home.vue'
 	export default {
 		components:{
-			Home
 		},
 		name: 'App',
 		data(){
@@ -26,10 +24,13 @@
 	box-sizing: inherit;
 }
 .clearfix:after,.clearfix:before{
-				content: "";
-				display: block;
-				clear: both;
-			}
+	content: "";
+	display: block;
+	clear: both;
+}
+.clearfix{
+	*zoom: 1;
+}
 
 	
 </style>

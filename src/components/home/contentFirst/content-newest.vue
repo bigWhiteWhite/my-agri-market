@@ -53,7 +53,7 @@ v<template>
 					</div>
 				</div>
 			</div>
-			<div class="lastest-purchase">
+			<div class="lastest-purchase"><!-- 最新采购 -->
 				<div class="lastest-purchase-top">
 					<div class="left">
 						<div class="lastest-purchase-top-title">最新采购</div>
@@ -69,11 +69,11 @@ v<template>
 				<contentNewest02></contentNewest02>
 				
 			</div>
-			<div class="lastest-quotation">
+			<div class="lastest-quotation"><!-- 产地行情 -->
 				<div class="lastest-quotation-top">
 					<div class="left">
 						<div class="lastest-quotation-top-title">产地行情</div>
-						<span>最新更新时间</span>
+						<span>{{nowTime}}</span>
 					</div>
 					<a href="/" target="_blank" class="more">
 						<div class="right">
@@ -92,6 +92,7 @@ v<template>
 <script>
 import contentNewest02 from './content-newest02.vue'
 import contentNewest03 from './content-newest03.vue'
+import moment from 'moment'
 export default {
 	components:{
 		contentNewest02,contentNewest03
@@ -99,6 +100,7 @@ export default {
 	name: '',
 	data () {
     	return {
+			nowTime:"",
 			mySupply:[{id:"01",news:"赣南脐橙水果新鲜当季整箱橙子应季现季正宗江西脐橙赣州",price:"84",path:"https://image.cnhnb.com//image/jpeg/head/2019/11/05/7d877da93ae947bbab558ab328b67dfc.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
 						{id:"02",news:"手剥巴旦木，精选好果，奶香味。整箱散装，一件10斤",price:"35",path:"https://image.cnhnb.com/image/jpeg/head/2019/11/15/1abca8247a2b467e8cb31a02f57423c4.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
 						{id:"03",news:"洪湖市市大闸蟹  湖北洪湖市大闸蟹原产地直供",price:"115",path:"https://image.cnhnb.com/image/jpeg/head/2019/10/28/1d0acc6e8c6b414a8981754934e22a3c.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
@@ -108,7 +110,10 @@ export default {
 						{id:"03",news:"冬桃苗  中华二号冬桃树苗，嫁接苗，基地直供，现挖现发，保证成活率",price:"45",path:"https://image.cnhnb.com/image/jpeg/head/2020/11/17/2d8cf45676df4c79bfeaae35020d4018.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
 						{id:"04",news:"新疆核桃  2020年新货，新疆薄皮核桃，手捏既开，不满意退",price:"80",path:"https://image.cnhnb.com/image/jpeg/head/2020/06/24/b749d243ccaa4d5e8f393d7ca635547d.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"}]
     	}
-  	}
+  	},
+	mounted() {
+		this.nowTime = moment().format('YYYY-MM-DD')
+	}
 }
 </script>
 

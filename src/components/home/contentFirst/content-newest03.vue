@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div><!-- 产地行情 -->
 		<div class="latest-supply-head">
 			<div class="head_1">类型</div>
 			<div class="head_2" >产品/品种</div> 

@@ -11,6 +11,7 @@ function resolve (dir) {
 
 
 module.exports = {
+  devtool: 'source-map', 
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
