@@ -14,7 +14,7 @@
 							<Icon type="ios-paper" />
 							个人中心
 						</MenuItem>
-						<MenuItem name="2">
+						<MenuItem name="2" to="/supplier">
 							<Icon type="ios-people" />
 							供应商后台
 						</MenuItem>

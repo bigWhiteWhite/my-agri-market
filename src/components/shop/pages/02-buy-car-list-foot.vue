@@ -16,7 +16,12 @@
 					</div>
 					<div class="right">
 						<div class="combine">
-							<div class="btn-area"><a class="common-submit-btn" href="/">去结算<b></b></a></div>
+							<div class="btn-area">
+								<router-link :to="{name:'confirmMessage'}">
+									去结算
+									<b></b>
+								</router-link>
+							</div>
 							<div class="price-sum">
 								<div>
 									<div class="price-show">
@@ -74,6 +79,7 @@
 				if (!confirm("确认删除选中的商品吗")) {
 					return
 				}else{
+					jdcheckbox.checked = false
 					console.log(this.$store.state.allSelectedBuys)
 					console.log(this.$store.state.buyList)
 					/* for(var i=this.$store.state.buyList.length-1;i>=0;i--){
@@ -83,21 +89,20 @@
 							jdcheckbox.checked = false
 						}
 					} */
-					/* var abc=[];
-					for (var a=this.$store.state.allSelectedBuys.length-1;a>=0;a--) {
+					var abc=[];
+					for (var a = 0;a < this.$store.state.allSelectedBuys.length;a++) {
 						abc.push(this.$store.state.allSelectedBuys[a].id)
 						console.log(abc)
-					} */
-					for(var i=this.$store.state.buyList.length-1;i>=0;i--){
-						for (var j=this.$store.state.allSelectedBuys.length-1;j>=0;j--) {
-							if (this.$store.state.allSelectedBuys[id].indexOf(this.$store.state.buyList[j].id)!==-1) {
-								var index = this.$store.state.allSelectedBuys[id].indexOf(this.$store.state.buyList[j].id);
-								this.$store.state.allSelectedBuys.splice(index,1);
-								this.$store.state.buyList.splice(j,1);
-							}
-						}
 					}
-					
+					for(var i=this.$store.state.buyList.length-1;i>=0;i--){
+							if (abc.indexOf(this.$store.state.buyList[i].id)!==-1) {
+								var index = abc.indexOf(this.$store.state.buyList[i].id);
+								this.$store.state.allSelectedBuys.splice(index,1);
+								this.$store.state.buyList.splice(i,1);
+							}
+							jdcheckbox.checked = false
+							console.log(1)
+					}
 					jdcheckbox.checked = false
 					this.$store.dispatch('myallNum')
 				}

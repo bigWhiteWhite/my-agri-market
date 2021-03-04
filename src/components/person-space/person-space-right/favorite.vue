@@ -1,0 +1,21 @@
+<template>
+	<div class="favorite">
+		favorite
+	</div>
+</template>
+
+<script>
+
+export default {
+	name: '',
+	data () {
+    	return {
+      		
+    	}
+  	}
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>

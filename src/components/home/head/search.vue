@@ -210,7 +210,7 @@ export default {
 	/* 顶端搜索框 */
 	.search{
 		position: relative;
-		left: -180px;
+		left: -150px;
 		width: 650px;
 		height: 40px;
 		margin-top: 41px;

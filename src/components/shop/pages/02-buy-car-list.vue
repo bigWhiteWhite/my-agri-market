@@ -4,7 +4,7 @@
 			<!-- 购买商品标题 -->
 			<div class="shop">
 				<div class="cart-checkbox">
-					<input type="checkbox" name="checkShop" class="jdcheckbox">
+					<!-- <input type="checkbox" name="checkShop" class="jdcheckbox"> -->
 				</div>
 				<span class="shop-txt">
 					<a href="#" class="shop-name" target="_blank" rel="noreferrer">
