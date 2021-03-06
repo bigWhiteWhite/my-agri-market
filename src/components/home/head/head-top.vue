@@ -11,16 +11,16 @@
 			<div class="top-ul">
 				 <Menu mode="horizontal"  active-name="1">
 						<MenuItem name="1" to="/login">
-							<Icon type="ios-paper" />
+							<i class="iconfont icon-yonghu_huaban1"></i>
 							个人中心
 						</MenuItem>
 						<MenuItem name="2" to="/supplier">
-							<Icon type="ios-people" />
+							<i class="iconfont icon-gangweiguanli"></i>
 							供应商后台
 						</MenuItem>
 						<Submenu name="3">
 							<template slot="title">
-								<Icon type="ios-stats" />
+								<i class="iconfont icon-dianhua"></i>
 								手机端
 							</template>
 							<MenuGroup title="使用">

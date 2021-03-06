@@ -11,7 +11,7 @@
 					<router-view></router-view>
 					
 					<button class="go" @click="login">
-						<a href="/personspace">登陆<Icon type="md-log-in" /></a>
+						<a href="/personspace">登陆<i class="iconfont icon-play-times"></i></a>
 					</button>
 					<br>
 

@@ -69,7 +69,7 @@
 						<!-- 分享收藏 -->
 						<ul class="btn-list">
 							<li class="">
-								<Icon type="ios-heart-outline" />
+								<i class="iconfont icon-xihuan"></i>
 								<span>收藏</span>
 							</li>
 							<li class="">

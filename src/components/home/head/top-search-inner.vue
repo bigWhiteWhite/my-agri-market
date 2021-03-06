@@ -9,16 +9,16 @@
 			<div class="nav-head-ul">
 				<Menu mode="horizontal"  active-name="1">
 				        <MenuItem name="1">
-				            <Icon type="ios-paper" />
+							<i class="iconfont icon-nav_home-active"></i>
 				            首页
 				        </MenuItem>
 				        <MenuItem name="2">
-				            <Icon type="ios-people" />
+							<i class="iconfont icon-gaojibaobiaoshezhi"></i>
 				            供应大厅
 				        </MenuItem>
 				        <Submenu name="3">
 				            <template slot="title">
-				                <Icon type="ios-stats" />
+								<i class="iconfont icon-gouwuche"></i>
 				                采购大厅
 				            </template>
 				            <MenuGroup title="来看看">
@@ -30,23 +30,23 @@
 				            </MenuGroup>
 				        </Submenu>
 				        <MenuItem name="4">
-				            <Icon type="ios-call" />
+							<i class="iconfont icon-wendang"></i>
 				            行情大厅
 				        </MenuItem>
 						<MenuItem name="5">
-						    <Icon type="md-briefcase" />
+							<i class="iconfont icon-jichushuju"></i>
 						    行情资讯
 						</MenuItem>
 						<MenuItem name="6">
-						    <Icon type="ios-construct" />
+							<i class="iconfont icon-zhuomianzujianguanli"></i>
 						    农技学堂
 						</MenuItem>
 						<MenuItem name="7">
-						    <Icon type="ios-aperture" />
+							<i class="iconfont icon-chukudan"></i>
 						    农商代卖
 						</MenuItem>
 						<MenuItem name="8">
-						    <Icon type="ios-build" />
+							<i class="iconfont icon-shezhi"></i>
 						    综合设置
 						</MenuItem>
 				    </Menu>

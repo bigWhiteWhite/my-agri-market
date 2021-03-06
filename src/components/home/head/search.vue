@@ -9,7 +9,7 @@
 				 <Dropdown>
 				        <a href="javascript:void(0)">
 				            下拉菜单
-				            <Icon type="ios-arrow-down"></Icon>
+							<i class="iconfont icon-114fangxiang_xiangxia"></i>
 				        </a>
 				        <DropdownMenu slot="list" class="ivu-select">
 				            <DropdownItem >供应</DropdownItem>
@@ -40,7 +40,7 @@
 							<Dropdown>
 							        <a href="javascript:void(0)">
 							            下拉菜单
-							            <Icon type="ios-arrow-down"></Icon>
+							           <i class="iconfont icon-114fangxiang_xiangxia"></i>
 							        </a>
 							        <DropdownMenu slot="list" class="ivu-select">
 							            <DropdownItem >供应</DropdownItem>

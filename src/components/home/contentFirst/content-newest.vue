@@ -9,8 +9,7 @@ v<template>
 					</div>
 					<a href="/" target="_blank" class="more">
 						<div class="right">
-							<i class="iconfont icon-lanmujiantou" style="font-size:12px;"></i>
-							<Icon type="ios-arrow-forward" />
+							<i class="iconfont icon-fangxiangyuan-xiangyou"></i>
 						</div>
 					</a>
 				</div>
@@ -62,7 +61,7 @@ v<template>
 					<a href="/" target="_blank" class="more">
 						<div class="right">
 							<i class="iconfont icon-lanmujiantou" style="font-size:12px;"></i>
-							<Icon type="ios-arrow-forward" />
+							<i class="iconfont icon-fangxiangyuan-xiangyou"></i>
 						</div>
 					</a>
 				</div>
@@ -78,7 +77,7 @@ v<template>
 					<a href="/" target="_blank" class="more">
 						<div class="right">
 							<i class="iconfont icon-lanmujiantou" style="font-size:12px;"></i>
-							<Icon type="ios-arrow-forward" />
+							<i class="iconfont icon-fangxiangyuan-xiangyou"></i>
 						</div>
 					</a>
 				</div>
@@ -174,13 +173,13 @@ export default {
 			height: 24px;
 			width: 24px;
 			margin-right: 20px;
-			border: 1px solid #39bf3e;
-			border-radius: 50px;
+			//border: 1px solid #39bf3e;
+			//border-radius: 50px;
 			color: #39bf3e;
 		}
 		@mixin lastest06 {
 			font-family: iconfont!important;
-			font-size: 16px;
+			font-size: 20px;
 			font-style: normal;
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
