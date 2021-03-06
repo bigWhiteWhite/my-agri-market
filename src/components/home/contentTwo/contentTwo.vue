@@ -14,7 +14,7 @@
 							<div class="first-name">禽畜肉蛋</div>
 							<div class="recommend-left-t2">基地直供 运输包活</div>
 							<a href="/p/qcrd/" target="_blank">
-								<div class="look-more">查看更多<i class="el-icon-caret-right"></i></div>
+								<div class="look-more">查看更多<i class="iconfont icon-play-times"></i></div>
 							</a>
 							<div class="second-content">
 								<div class="second-name-item" v-for="(item,index) in secondNameItem" :key=item.id>

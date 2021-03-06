@@ -3,12 +3,12 @@
 		<el-col >
 		    <el-menu default-active="2" class="el-menu-vertical-demo" :router = true active-text-color="#39bf3e">
 				<el-menu-item index="/supplier/index">
-				  <i class="el-icon-menu"></i>
+				  <i class="iconfont icon-nav_home-active"></i>
 				  <span slot="title">首页</span>
 				</el-menu-item>
 		      <el-submenu index="2">
 		        <template slot="title">
-		          <i class="el-icon-location"></i>
+		          <i class="iconfont icon-login_eye"></i>
 		          <span>订单管理</span>
 		        </template>
 		        <el-menu-item-group>
@@ -18,7 +18,7 @@
 		      </el-submenu>
 		      <el-submenu index="3">
 		        <template slot="title">
-		          <i class="el-icon-location"></i>
+		          <i class="iconfont icon-zhiliangguanli"></i>
 		          <span>供应管理</span>
 		        </template>
 		        <el-menu-item-group>

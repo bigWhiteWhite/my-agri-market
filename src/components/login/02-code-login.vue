@@ -2,11 +2,11 @@
 	<div class="code-login">
 		<div>
 			<div class="item border-m-f">
-				<i class="el-icon-s-custom"></i> 
+				<i class="iconfont icon-yonghu_huaban1"></i> 
 				<input type="text" placeholder="请输入账号">
 			</div>
 			<div class="item border-m-f">
-				<i class="el-icon-view"></i> 
+				<i class="iconfont icon-suo"></i> 
 				<input type="password" placeholder="请输入密码">
 		    </div>
 		</div>
@@ -39,7 +39,7 @@
 			//输入框字体图标
 			font-size: 20px;
 			color: #ff862c;
-			margin-top: 25px;
+			margin-top: 20px;
 			margin-left: -5px;
 			float: left
 		}

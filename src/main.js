@@ -17,9 +17,11 @@ import 'view-design/dist/styles/iview.css';
 Vue.use(ViewUI);
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
-
-/* import './layui/css/layui.css'
-import './layui/layui.all.js' */
+//字体图标
+import '../static/icon/iconfont.css'
+import '../static/icon/iconfont.js'
+import '../static/icon02/iconfont.css'
+import '../static/icon02/iconfont.js'
 
 Vue.directive('title', {//更改页面标题
   inserted: function (el, binding) {

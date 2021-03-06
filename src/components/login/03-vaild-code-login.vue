@@ -3,19 +3,19 @@
 		<div class="form" :model="form" :rules="rules">
 			<div class="input">
 				<!-- 手机号 -->
-				<i class="el-icon-phone"></i>
+				<i class="iconfont icon-dianhua"></i>
 				<input class="inPhone" type="text" :placeholder="rules.phone[0].message" autocomplete="off" v-model="form.phone">
 			</div>
 			<div class="input" style="width: 60%;height: 44.4px;">
 				<!-- 验证码 -->
-				<i class="el-icon-s-custom"></i>
+				<i class="iconfont icon-yonghu_huaban1"></i>
 				<input class="inUser" type="text" :placeholder="rules.vaildCode[0].message" v-model="form.vaildCode"
 				 @keydown.enter="loginCode" autocomplete="off" style="width: 83%;">
 				<vaildCode></vaildCode>
 			</div>
 			<div class="input">
 				<!-- 短信验证码 -->
-				<i class="el-icon-key"></i>
+				<i class="iconfont icon-suo"></i>
 				<input class="inPass" type="password" :placeholder="rules.seccode[0].message" autocomplete="off" v-model="form.seccode">
 				<el-button type="text">获取验证码</el-button>
 			</div>
@@ -68,7 +68,7 @@ export default {
 			//输入框字体图标
 			font-size: 20px;
 			color: #ff862c;
-			margin-top: 25px;
+			margin-top: 20px;
 			margin-left: -5px;
 			float: left
 		}

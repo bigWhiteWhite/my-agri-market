@@ -18,35 +18,35 @@
 				      text-color="#39bf3e"
 				      active-text-color="#ff862c">
 				      <el-menu-item index="/personspace/shouye">
-				        <i class="el-icon-menu"></i>
+				        <i class="iconfont icon-nav_home-active"></i>
 				        <span slot="title">首页</span>
 				      </el-menu-item>
 				      <el-menu-item index="/personspace/Purchase">
-				        <i class="el-icon-setting"></i>
+				        <i class="iconfont icon-kucunguanli"></i>
 				        <span slot="title">已买到的货品</span>
 				      </el-menu-item>
 					  <el-menu-item index="/personspace/refund">
-					    <i class="el-icon-setting"></i>
+					    <i class="iconfont icon-gangweiguanli"></i>
 					    <span slot="title">退货退款</span>
 					  </el-menu-item>
 					  <el-menu-item index="/personspace/buikPurchase">
-					    <i class="el-icon-setting"></i>
+					    <i class="iconfont icon-kucunshishezhi"></i>
 					    <span slot="title">代发批量下单</span>
 					  </el-menu-item>
 					  <el-menu-item index="/personspace/favorite">
-					    <i class="el-icon-setting"></i>
+					    <i class="iconfont icon-xihuan"></i>
 					    <span slot="title">收藏夹</span>
 					  </el-menu-item>
 					  <el-menu-item index="/personspace/coupon">
-					    <i class="el-icon-setting"></i>
+					    <i class="iconfont icon-wendang"></i>
 					    <span slot="title">优惠券</span>
 					  </el-menu-item>
 					  <el-menu-item index="/personspace/address">
-					    <i class="el-icon-setting"></i>
+					    <i class="iconfont icon-shengchanguanli"></i>
 					    <span slot="title">收货地址管理</span>
 					  </el-menu-item>
 					  <el-menu-item index="/personspace/changeCode">
-					    <i class="el-icon-setting"></i>
+					    <i class="iconfont icon-suo"></i>
 					    <span slot="title">修改密码</span>
 					  </el-menu-item>
 				    </el-menu>

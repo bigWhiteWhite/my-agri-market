@@ -14,7 +14,13 @@
 					@open="handleOpen" @close="handleClose" :collapse="isCollapse" v-for="(item,index) in fruitSelect" :key = item.id>
 				  <el-submenu index="1" >
 				    <template slot="title">
-				      <i class="el-icon-location">{{item.title}}</i>
+				      <!-- <i class="iconfont icon-biandou">{{item.title}}</i> -->
+						 <div class="shucai">
+							  <svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-biandou"></use>
+							  </svg>
+							  <i >{{item.title}}</i>
+						</div>
 				      <span slot="title">{{item.title}}</span>
 					  <el-divider></el-divider>
 				    </template>
@@ -150,8 +156,17 @@ export default {
 					margin: 10px 0;//改变上下间隔
 					color: black;
 				}
-				.el-submenu__title i{
-					color: #39bf3e;
+				.el-submenu__title{
+					//color: #39bf3e;
+					.shucai{
+						float: left;
+						width: 40px;
+						height: 30px;
+						svg{
+							width: 100%;
+							height: 100%;
+						}
+					}
 				}
 				.el-menu--collapse{
 					width: 201px;//改变宽度

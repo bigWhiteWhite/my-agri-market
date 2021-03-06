@@ -73,7 +73,7 @@
 								<span>收藏</span>
 							</li>
 							<li class="">
-								<i class="el-icon-share"></i>
+								<i class="icon icon-video-share"></i>
 								<span>分享</span>
 							</li>
 						</ul>

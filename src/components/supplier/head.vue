@@ -7,7 +7,9 @@
 				<span class="sub-title"></span>
 			</div>
 			<div class="sidebar-open"  @click="toShouYe">
-				<i class="el-icon-s-home"></i>
+				<svg class="icon" aria-hidden="true">
+				      <use xlink:href="#icon-zhuye"></use>
+				</svg>
 			</div>
 		</div>
 		
@@ -76,10 +78,15 @@
 			height: 58px;
 			line-height: 58px;
 			vertical-align: middle;
-			background: #3da32d;
+			background: #fff;
 			text-align: center;
 			cursor: pointer;
 			font-size: 25px;
+			border-bottom: 2px solid #45b035;
+			svg{
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 }
