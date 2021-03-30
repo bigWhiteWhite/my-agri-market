@@ -14,6 +14,7 @@ MyPlugin.install = function(Vue){
                // 判断当前的组件名
                 if( this.$options.name === opt) {
                      // 根据vuex去调用，改变数据（谁改）？
+					// this.$store.commit('isLogin')
                 }
            })
            

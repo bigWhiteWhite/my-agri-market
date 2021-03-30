@@ -5,51 +5,18 @@
 		
 		<!--菜单导航  -->
 		<div class="nav-head">
-			<div class="classification" ><div class="mascot-ui"><img src="//files.cnhnb.com/fas/home/img/33ae5c7.png" alt=""></div> <img src="//files.cnhnb.com/fas/home/img/15d577b.png" alt="" class="fenlei-icon" > <span>货品分类</span></div>
+			<div class="classification" id="classification"><div class="mascot-ui"><img src="//files.cnhnb.com/fas/home/img/33ae5c7.png" alt=""></div> <img src="//files.cnhnb.com/fas/home/img/15d577b.png" alt="" class="fenlei-icon" > <span>货品分类</span></div>
 			<div class="nav-head-ul">
-				<Menu mode="horizontal"  active-name="1">
-				        <MenuItem name="1">
-							<i class="iconfont icon-nav_home-active"></i>
-				            首页
-				        </MenuItem>
-				        <MenuItem name="2">
-							<i class="iconfont icon-gaojibaobiaoshezhi"></i>
-				            供应大厅
-				        </MenuItem>
-				        <Submenu name="3">
-				            <template slot="title">
-								<i class="iconfont icon-gouwuche"></i>
-				                采购大厅
-				            </template>
-				            <MenuGroup title="来看看">
-				                <MenuItem name="3-1">新增商品</MenuItem>
-				                
-				            </MenuGroup>
-				            <MenuGroup title="来瞧瞧">
-				                <MenuItem name="3-4">热卖商品</MenuItem>
-				            </MenuGroup>
-				        </Submenu>
-				        <MenuItem name="4">
-							<i class="iconfont icon-wendang"></i>
-				            行情大厅
-				        </MenuItem>
-						<MenuItem name="5">
-							<i class="iconfont icon-jichushuju"></i>
-						    行情资讯
-						</MenuItem>
-						<MenuItem name="6">
-							<i class="iconfont icon-zhuomianzujianguanli"></i>
-						    农技学堂
-						</MenuItem>
-						<MenuItem name="7">
-							<i class="iconfont icon-chukudan"></i>
-						    农商代卖
-						</MenuItem>
-						<MenuItem name="8">
-							<i class="iconfont icon-shezhi"></i>
-						    综合设置
-						</MenuItem>
-				    </Menu>
+				<el-menu :default-active="activeIndex" class="el-menu-demo" 
+						mode="horizontal"  :router='true' text-color="#000" active-text-color="#39bf3e"> <!-- #ff862c -->
+				  <el-menu-item index='content'>
+					  <i class="iconfont icon-nav_home-active"></i>首页
+				  </el-menu-item>
+				  <el-menu-item index="supply">
+					  <i class="iconfont icon-nav_home-active"></i>供应大厅
+				  </el-menu-item>
+				  <el-menu-item index="3"><i class="iconfont icon-wendang"></i>农家乐</el-menu-item>
+				</el-menu>
 			</div>
 		</div>
 		
@@ -66,7 +33,16 @@ export default {
   },
   data () {
     return {
+		activeIndex:'1'
     }
+  },
+  methods:{
+	  goshuye(){
+		  this.$router.push({name:"Content"})
+	  },
+	  gosupply(){
+		  this.$router.push({name:"Supply"})
+	  }
   }
  
   
@@ -122,13 +98,29 @@ export default {
 		height: 34px;
 		width: 1200px;
 		z-index: 98;//设置小于搜索菜单
-		.ivu-menu-light.ivu-menu-horizontal .ivu-menu-item-active, .ivu-menu-light.ivu-menu-horizontal .ivu-menu-item:hover, .ivu-menu-light.ivu-menu-horizontal .ivu-menu-submenu-active, .ivu-menu-light.ivu-menu-horizontal .ivu-menu-submenu:hover{
-			color: #39bf3e;
-			border-bottom: 2px solid #39bf3e;
-		}
-		.ivu-menu-horizontal{
+		
+		ul{
 			line-height: 35px;
 			height: 36px;
+			li{
+				line-height: 35px;
+				height: 100%;
+				text-align: center;
+				//width: 100px;
+				i{
+					position: relative;
+					top: -2px;
+					left: -10px;
+				}
+				a{
+					//float: left;
+					display: inline-block;
+					width: 100%;
+					height: 100%;
+					//margin-left:-20px ;
+					//padding-right:10px ;
+				}
+			}
 		}
 	}
 }

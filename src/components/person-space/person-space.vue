@@ -3,7 +3,10 @@
 		<Head></Head>
 		<div class="user-title-bg">
 			<div class="user-title-content">
-				
+				<div class="goback">
+					<router-link to="/"><img  :src="currentUser.image" alt="" class="search-img"></router-link>
+				</div>
+				<el-divider></el-divider>
 			</div>
 		</div>
 		<div class="user-content">
@@ -63,6 +66,7 @@
 <script>
 import Head from '../home/head/head-top.vue'
 import Footer from '../home/foot/foot.vue'
+import {mapState,mapGetters,mapActions} from 'vuex'
 export default {
 	name: '',
 	components:{
@@ -73,12 +77,16 @@ export default {
       		
     	}
   	},
+	computed:{
+		...mapState(['currentUser'])
+	},
 	methods:{
 	},
 	mounted() {
 		//先去除logo
 		let logo = document.querySelector('.title')
-		logo.style.display = 'none'
+		logo.style.display = 'none',
+		console.log(this.$store.state.currentUser)
 	}
 }
 </script>
@@ -92,19 +100,29 @@ export default {
 		top: 0;
 		width: 100%;
 		height: 80px;
-		background-color: #39bf3e;
+		//background-color: #39bf3e;
 		.user-title-content{
 			position: relative;
 			margin: 0 auto;
 			width: 1200px;
 			height: 80px;
-			background-color: #39bf3e;
+			//border-bottom: 1px solid ;
+			//background-color: #39bf3e;
 			display: -webkit-box;
 			display: flex;
 			-webkit-box-pack: justify;
 			justify-content: space-between;
 			-webkit-box-align: center;
 			align-items: center;
+			.goback{
+				margin-left: 16px;
+				width: 76px;
+				height: 76px;
+				img{
+					width: 100%;
+					height: 100%;
+				}
+			}
 		}
 	}
 	@mixin flex{
@@ -119,6 +137,7 @@ export default {
 		position: relative;
 		margin: 0 auto;
 		width: 1200px;
+		margin-bottom: 20px;
 		.left{
 			padding: 0px 0;
 			width: 180px;

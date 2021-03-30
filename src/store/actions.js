@@ -1,4 +1,7 @@
-import {CREATED_CODE,SELECT_ALL,DEL,ALL_PRICE,SELECT_ONE,ALL_NUM} from './mutation-type'
+import {CREATED_CODE,SELECT_ALL,DEL,
+ALL_PRICE,SELECT_ONE,ALL_NUM,USER_STATUS,SEARCH_SHOP} from './mutation-type'
+import $axios from 'axios'
+import Router from '../router/index.js'
 export default {
 	
 	//创建验证码
@@ -23,4 +26,10 @@ export default {
 		commit(ALL_NUM)
 	},
 	/* 购物列表结束 */
+	/* 修改用户状态 */
+	setUser({commit},user){
+		commit(USER_STATUS,{user})
+	},
+	/* 修改用户状态 */
+	
 }

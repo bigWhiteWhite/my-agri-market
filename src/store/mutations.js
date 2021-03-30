@@ -1,7 +1,8 @@
 /*
 包含多个由action触发去直接更新状态的方法的对象
 */
-import {CREATED_CODE,SELECT_ALL,DEL,ALL_PRICE,SELECT_ONE,ALL_NUM} from "./mutation-type";
+import {CREATED_CODE,SELECT_ALL,DEL,ALL_PRICE,
+SELECT_ONE,ALL_NUM,USER_STATUS,SEARCH_SHOP} from "./mutation-type";
 //从mutation-type传过来的是小写的变量而且是字符串，传导mutation的时候，
 // 为了将字符串换为变量，要使用[]的方式调用
 
@@ -131,5 +132,28 @@ export default {
 			console.log(state.allSelectedBuys)
 		}
 	},
+	/* 更改用户状态信息 */
+	[USER_STATUS](state,user){
+		if(user.user){
+			state.currentUser = user.user
+			//console.log("mutation--"  + state.currentUser)
+			state.isLogin = true
+			state.isShow = false
+			state.isShow02 = true
+		}else if(user.user === null){
+			//console.log(123)
+			//登出的时候，清空sessionStorage里的东西
+			localStorage.setItem("currentUser",null)
+			state.currentUser = null
+			state.isLogin = false
+			state.token = ""
+		}
+	},
+	/* 更改用户状态信息 */
+	/* 搜索商品*/
+	[SEARCH_SHOP](state,key){
+	
+	}
+	 /* 搜索商品 */
 	
 }

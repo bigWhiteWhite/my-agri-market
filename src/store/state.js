@@ -30,5 +30,16 @@ export default {
 	 onePrice:0,
 	 allPrice:0,			//选中的商品的总价	
 	 /* 购物列表结束 */
-	
+	/* 用户登陆状态开始*/
+	currentUser:{},
+	isLogin:false,
+	token:"",
+	isShow:true,//默认显示，登陆以后不显示
+	isShow02:false,//默认不显示，登陆以后显示
+	//userInfo: JSON.parse(localStorage.getItem("userInfo")),
+	/* 用户登陆状态结束 */
+	/* 商品详情 */
+	currentPage:1,
+	pageSize:8  //请求商品的数量
+	/* 商品详情 */
 }

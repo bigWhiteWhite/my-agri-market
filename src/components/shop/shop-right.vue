@@ -2,8 +2,8 @@
 	<div class="box-right">
 		<div class="title">
 			<!-- 标题 -->
-			<h1>B．Duck小黄鸭尤克里里初学者仿真小吉他玩具可弹奏新年礼物3-6岁</h1>
-			<p class="newp">锻炼手部动作 启发音乐潜能</p>
+			<h1>{{data.name}}</h1>
+			<p class="newp">{{data.update_time}}</p>
 		</div>
 		<div class="price">
 			<!-- 价格 -->
@@ -11,7 +11,7 @@
 				<dt class="tb-metatit">价格</dt>
 				<dd>
 					<em class="tm-yen">¥</em>
-					<span class="tm-price">29.90</span>
+					<span class="tm-price">{{data.price/100}}</span>
 					<div class="staticPromoTip">
 						<!--rullBanner ids:$ids true-->
 					</div>
@@ -20,13 +20,12 @@
 			<dl class="tm-promo-panel" style="display: none;"><dt class="tb-metatit">价格</dt>
 				<dd></dd>
 			</dl>
-			<script type="data/tpl"><!--rullBanner ids:$ids true--></script>
 			<dl class="tm-shopPromo-panel"></dl>
 		</div>
 		<!-- 货品来源 -->
 		<div class="resource">
-			<span class="info-left">发货地址</span>
-			<span class="info-right">陕西省宝鸡市眉县</span>
+			<span class="info-left">地区</span>
+			<span class="info-right">山东</span><!-- {{message[3].propertyValueVoList[0].value}} -->
 		</div>
 		<!-- 累计评价 -->
 		<ul class="assess">
@@ -68,12 +67,33 @@
 </template>
 
 <script>
+	import {mapState,mapGetters,mapActions} from 'vuex'
 	export default {
 		name: '',
 		data() {
 			return {
 				value1: 100,
+				data:{},
+				message:{},
 			}
+		},
+		mounted() {
+			var params = new URLSearchParams()
+			params.append("pid",this.$route.query.pid)/* this.$store.state.pid */
+			this.$axios.post('/product/detail/',params)
+			.then(res=>{
+			    if(res.status===200){
+			    	this.data =  res.data.data
+					this.message =  res.data.data.propertyNameList
+					//console.log(this.data)
+					//console.log(this.message)
+			    }else{
+			   	 return 'error'
+			    }
+			})  
+			.catch(err=>{
+				console.log(err)
+			})
 		}
 	}
 </script>
@@ -95,12 +115,12 @@
 				line-height: 1;
 				font-size: 16px;
 				font-weight: 700;
-				color: #000;
+				color: #FF0036;
 			}
 
 			.newp {
 				font-size: 14px;
-				color: #FF0036;
+				color: #000;
 				font-family: "microsoft yahei";
 			}
 		}

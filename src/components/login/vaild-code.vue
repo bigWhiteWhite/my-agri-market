@@ -45,7 +45,7 @@ export default {
 <style scoped lang="scss">
   .ValidCode{
     position: relative;
-	top: -40px;
+	top: -40px;//-40
 	left: 140px;
 	border: #ff862c solid 1px;
     display: flex;

@@ -24,8 +24,12 @@
 		<!-- 选择验证码还是密码登陆按钮 -->
 		<div class="switch">
 			<span style="cursor: pointer;"></span> 
-			<span style="cursor: pointer;"><router-link :to="{name:'codeLogin'}">使用密码登录</router-link></span>
+			<span style="cursor: pointer;" @click="clear"><router-link :to="{name:'codeLogin'}" >使用密码登录</router-link></span>
 		</div>
+		
+		<button class="go"  id="loginbutton"><!-- //@click="login" -->
+			<a href="#">登陆<i class="iconfont icon-play-times"></i></a><!-- //personspace -->
+		</button>
 	</div>
 </template>
 
@@ -48,6 +52,9 @@ export default {
 	},
 	methods: {
 		...mapActions(['login', 'createdCode']),
+		clear(){
+			this.$store.state.form = {}
+		},
 		loginCode() { //登陆验证
 			if (this.$store.state.form.seccode != this.$store.state.checkCode) {
 				this.$store.state.rules.vaildCode[0].message = "验证码输入错误"
@@ -109,6 +116,29 @@ export default {
 	a{
 		text-decoration: none;
 		color: #45b035;
+	}
+}
+//登陆按钮
+.go {
+	margin-top: 20px;
+	width: 40%;
+	height: 30px;
+	border-radius: 10px;
+	border: 0;
+	color: #fff;
+	font-size: 15px;
+	background-color: #39bf3e;
+	//background-image: linear-gradient(to right, #39bf3e 0%, #fff 100%);
+	outline: none;
+
+	a {
+		font-size: 19px;
+		text-decoration: none;
+		color: #ffffff;
+
+		i {
+			margin-left: 5px;
+		}
 	}
 }
 </style>

@@ -1,20 +1,15 @@
 <template>
-	<div class="">
+	<div class="" v-if="isRouterAlive">
 		<Head></Head>
 		<Search></Search>
 		<!-- 商品列表 -->
 		<div class="navTitle">
-			<el-menu class="el-menu-demo" mode="horizontal" background-color="#fff" text-color="black" active-text-color="#ff862c">
+			<el-menu class="el-menu-demo" mode="horizontal" background-color="#fff"
+				text-color="black" active-text-color="#ff862c" :router="true">
 				<!-- #ffd04b -->
-				<el-menu-item index="1">
-					<router-link :to="{name:'home'}">首页</router-link>
+				<el-menu-item index="/">
+					首页
 				</el-menu-item>
-				<el-submenu index="2">
-					<template slot="title">供应列表</template>
-					<el-menu-item index="2-1">选项1</el-menu-item>
-					<el-menu-item index="2-2">选项2</el-menu-item>
-					<el-menu-item index="2-3">选项3</el-menu-item>
-				</el-submenu>
 				<el-menu-item index="3"><a href="/" target="_blank">店铺档案</a></el-menu-item>
 				<el-menu-item index="4"><a href="/" target="_blank">店铺资质</a></el-menu-item>
 				<el-menu-item index="5"><a href="/" target="_blank">联系方式</a></el-menu-item>
@@ -31,7 +26,7 @@
 								<!--v-for="item in imgUrl" :key="item.index"  -->
 								<div class="magnifier">
 									<div class="small-box" @mouseover="handOver" @mousemove="handMove" @mouseout="handOut">
-										<img class="smallPic" :src="ImgUrl" />
+										<img class="smallPic" :src="ImgUrl"/><!-- :src='imglist[0].url' -->
 										<!-- 遮罩层-->
 										<div class="magnifier-zoom" v-show="showMask" :style="{background: configs.maskColor,height: configs.maskWidth + 'px',
 													  width: configs.maskHeight + 'px', 
@@ -44,8 +39,8 @@
 						</el-carousel>
 						<!-- 小图转换大图 -->
 						<div class="little_img">
-							<ul>
-								<li v-for="img in imgUrl" @click='getIndex(img.url)' @mouseenter="getIndex(img.url)">
+							<ul><!-- 修改这里图片 -->
+								<li v-for="img in imglist" @click='getIndex(img.url)' @mouseenter="getIndex(img.url)">
 									<img :src="img.url" style="width: 50px; height: 50px">
 								</li>
 							</ul>
@@ -79,13 +74,13 @@
 						</ul>
 						
 					</div>
-
+					
 					<shopRight></shopRight>
-
 				</div>
 			</div>
 		</div>
-
+		<!-- 更多信息 -->
+		<moreDetail></moreDetail>
 	</div>
 </template>
 
@@ -93,38 +88,19 @@
 	import Head from '../home/head/head-top.vue'
 	import Search from '../home/head/search.vue'
 	import shopRight from './shop-right.vue'
+	import moreDetail from './shop-detail.vue'
 	export default {
 		name: '',
 		components: {
-			Head,
-			Search,
-			shopRight
+			Head,Search,shopRight,moreDetail
 		},
 		data() {
 			return {
-				imgUrl: [ //{ index:1, url: require('https://img.alicdn.com/imgextra/i4/725677994/O1CN01rUEAUS28vIlOXDTLg_!!725677994.jpg_430x430q90.jpg') },
-					{
-						index: 1,
-						url: 'https://img.alicdn.com/imgextra/i4/725677994/O1CN01rUEAUS28vIlOXDTLg_!!725677994.jpg_430x430q90.jpg'
-					},
-					{
-						index: 2,
-						url: 'https://img.alicdn.com/imgextra/i2/725677994/O1CN01vq6xg528vInLH8NEr_!!725677994.jpg_430x430q90.jpg'
-					},
-					{
-						index: 3,
-						url: 'https://img.alicdn.com/imgextra/i4/725677994/O1CN01rUEAUS28vIlOXDTLg_!!725677994.jpg_430x430q90.jpg'
-					},
-					{
-						index: 4,
-						url: 'https://img.alicdn.com/imgextra/i2/725677994/O1CN01vq6xg528vInLH8NEr_!!725677994.jpg_430x430q90.jpg'
-					},
-					{
-						index: 5,
-						url: 'https://img.alicdn.com/imgextra/i4/725677994/O1CN01rUEAUS28vIlOXDTLg_!!725677994.jpg_430x430q90.jpg'
-					}
-				],
-				ImgUrl: 'https://img.alicdn.com/imgextra/i4/725677994/O1CN01rUEAUS28vIlOXDTLg_!!725677994.jpg_430x430q90.jpg', //大图片默认显示第一张
+				isRouterAlive:true,
+				data:{},
+				imglist:{},
+				imgObj:{},
+				ImgUrl: '', //大图片默认显示第一张
 				configs: {
 					width: 418, //放大区域
 					height: 418, //放大区域
@@ -205,7 +181,27 @@
 			}
 		},
 		mounted() {
+			this.isRouterAlive = false
+			console.log(this.$route.query.pid)
 			this.$init()
+			var params = new URLSearchParams()
+			params.append("pid",this.$route.query.pid)/* this.$store.state.pid */
+			this.$axios.post('/product/detail/',params)
+			.then(res=>{
+			    if(res.status===200){
+					this.isRouterAlive = true
+			    	this.data =  res.data.data
+					this.imglist =  res.data.data.imageList
+					this.ImgUrl = this.imglist[0].url
+					//console.log(this.imglist[0].url)
+					//console.log(this.imglist)
+			    }else{
+			   	 return 'error'
+			    }
+			})  
+			.catch(err=>{
+				console.log(err)
+			})
 		},
 	}
 </script>

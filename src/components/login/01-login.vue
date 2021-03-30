@@ -6,15 +6,10 @@
 		<div class="hn-login">
 			<div class="login-content">
 				<div class="wrap">
-					<h2>欢迎登陆农商平台 </h2>
-					
+					<span class="register-title" id="register-title"><router-link :to="{name:'userRegister'}">还未注册？立刻注册</router-link></span>
+					<h2>欢迎来到农商平台 </h2>
 					<router-view></router-view>
-					
-					<button class="go" @click="login">
-						<a href="/personspace">登陆<i class="iconfont icon-play-times"></i></a>
-					</button>
 					<br>
-
 				</div>
 			</div>
 
@@ -40,14 +35,7 @@
 			}
 		},
 		methods:{
-			login() { //登陆验证
-				if (this.$store.state.form.seccode != this.$store.state.checkCode) {
-					this.$store.state.rules.vaildCode[0].message = "验证码输入错误"
-					this.$store.state.codeList = []
-					this.$store.dispatch('createdCode')
-					return false;
-				};
-			}
+			
 		}
 		
 	}
@@ -80,42 +68,21 @@
 				.wrap {
 					//用户登陆详细界面
 					width: 30%;
-					height: 400px;
+					height: 430px;
 					background: #fff;
 					//margin-right: 0;
 					margin-top: 10%;
 					text-align: center;
 					border-radius: 10px;
 					padding: 50px 50px;
-
+					.register-title{
+						a{
+							color: #39bf3e;
+						}
+					}
 					h2 {
 						color: #ff862c;
-						margin-top: 5%;
-					}
-
-					
-					//登陆按钮
-					button {
-						margin-top: 20px;
-						width: 40%;
-						height: 30px;
-						border-radius: 10px;
-						border: 0;
-						color: #fff;
-						font-size: 15px;
-						background-color: #39bf3e;
-						//background-image: linear-gradient(to right, #39bf3e 0%, #fff 100%);
-						outline: none;
-
-						a {
-							font-size: 19px;
-							text-decoration: none;
-							color: #ffffff;
-
-							i {
-								margin-left: 5px;
-							}
-						}
+						margin-top: 0%;
 					}
 				}
 

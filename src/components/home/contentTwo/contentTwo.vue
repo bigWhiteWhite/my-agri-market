@@ -25,22 +25,22 @@
 							</div>
 						</div>
 						<div class="recommend-right">
-							<div class="index-item-bg" v-for="(item,index) in recommed" :key=item.id >
+							<div class="index-item-bg" v-for="(item,index) in data" :key=item.id >
 								<div class="product-v2">
 									<router-link to="/shop" target="_blank">
 										<div class="data-imgs">
-											<img src="https://image.cnhnb.com/image/jpeg/head/2020/03/26/c7a0b75bb63f4fd88dbe06e923e67341.jpeg?imageView2/1/w/525/h/525/format/jpg/interlace/1/quality/100/ignore-error/1"class="s-img-default" data-v-490b5e9c="" data-src="https://image.cnhnb.com/image/jpeg/head/2020/03/26/c7a0b75bb63f4fd88dbe06e923e67341.jpeg?imageView2/1/w/525/h/525/format/jpg/interlace/1/quality/100/ignore-error/1"lazy="loaded">
+											<img :src=item.image class="s-img-default" lazy="loaded">
 											<div class="vedio-icon"><img src="//files.cnhnb.com/fas/home/img/59b9079.png" alt=""></div>
 										</div>
 										<div class="shops-text">
 											<div class="shops-price-bg">
-												<div class="shops-price">¥<span class="sp1">4600</span></div>
+												<div class="shops-price">¥<span class="sp1">{{item.price}}</span><span class="sp2">{{item.unit}}</span></div>
 												<div class="turnover">成交15.4万元</div>
 											</div>
 										</div>
 										<div class="title-field">
 											<div class="title one-line">
-												<div class="title-tag">优选</div>太湖猪 太湖原种母猪，太湖一代母猪自产自销，仅此一家，谨防上当受骗。
+												<div class="title-tag">优选</div>{{item.name}}
 											</div>
 											<div class="cw-tags">
 												<div class="cw-tag icon-item-005">保证金20000元</div>
@@ -74,21 +74,14 @@
 		name: 'contentTwo',
 		data() {
 			return {
+				data:{},
 				secondNameItem: [{id: "01",name: "活畜",title: "活畜"},
 									{id: "03",name: "活禽",title: "活禽"},
 									{id: "04",name: "禽畜苗",title: "禽畜苗"},
 									{id: "05",name: "蛋类",title: "蛋类"},
 									{id: "06",name: "动物毛绒",title: "动物毛绒"}],
-				recommed:[{id:"01"},
-							{id:"02"},
-							{id:"03"},
-							{id:"04"},
-							{id:"05"},
-							{id:"06"},
-							{id:"07"},
-							{id:"08"},
-							{id:"09"},
-							{id:"10"}]
+				recommed:[{id:"01"}],
+				data:{}
 				
 			}
 		},
@@ -96,6 +89,37 @@
 			toShop(){
 				this.$router.push({name:'shop'})
 			}
+		},
+		mounted() {
+			/* var params = new URLSearchParams()
+			params.append("categoryId","13")
+			params.append("pageNum","1")
+			params.append("pageSize","1")
+			console.log(params)
+			this.$axios.get('/product/list',params)
+			.then(res=>{
+				console.log(res)
+			})
+			.catch(err=>{
+				
+			}) */
+			var params = new URLSearchParams()
+			params.append("categoryId",13)//categoryId 
+			params.append("pageNum",1)//pageNum 
+			params.append("pageSize",1)//pageSize 
+			this.$axios.get('/product/list',{params})
+			.then(res=>{
+			   if(res.status===200){
+			    	//console.log(res.data.data.list)
+					this.data = res.data.data.list
+					//console.log(this.data)
+			    }else{
+			   	 return 'error'
+			    }
+			})  
+			.catch(err=>{
+				console.log(err)
+			})
 		}
 	}
 </script>
@@ -309,7 +333,10 @@
 											color: #ff442f;
 											letter-spacing: 0;
 											.sp1{
-												font-size: 18px;
+												font-size: 15px;
+											}
+											.sp2{
+												font-size: 13px;
 											}
 										}
 										.turnover{

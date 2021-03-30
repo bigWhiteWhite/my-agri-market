@@ -18,31 +18,31 @@ v<template>
 						<div class="swiper-inner">
 							 <el-carousel  :autoplay="false" arrow="never"  trigger="click">
 							    <el-carousel-item >
-									<div class="newest-supply" v-for="(item02,index) in mySupply" :key="item02.id">
-										<a href="/gongying/4802425/" target="_blank" >
+									<div class="newest-supply" v-for="(item02,index) in data01" :key="item02.pid">
+										<a @click="goDetail(item02.pid)"  target="_blank" >
 											<div class="news-img-div">
-												<img :alt="item02.news" :src="item02.path" class="s-img-default newest-supply-img"  lazy="loaded">
+												<img :alt="item02.news" :src="item02.image" class="s-img-default newest-supply-img"  lazy="loaded">
 											</div>
 											<div :title="item02.news" class="newest-supply-title">
-											{{item02.news}}
+											{{item02.name}}
 											</div> 
 											<div class="newest-supply-price" >
-												{{item02.price}}<span >元/箱</span>
+												{{item02.price/100}}<span >{{item02.unit}}</span>
 											</div>
 										</a>
 									</div>
 							    </el-carousel-item>
 								<el-carousel-item >
-									<div class="newest-supply" v-for="(item,index) in mySupply02" :key="item.id">
-										<a href="/gongying/4802425/" target="_blank" >
+									<div class="newest-supply" v-for="(item,index) in data02" :key="item.pid" >
+										<a  @click="goDetail(item.pid)" target="_blank" >
 											<div class="news-img-div">
-												<img :alt="item.news" :src="item.path" class="s-img-default newest-supply-img"  lazy="loaded">
+												<img :alt="item.news" :src="item.image" class="s-img-default newest-supply-img"  lazy="loaded">
 											</div>
 											<div :title="item.news" class="newest-supply-title">
-											{{item.news}}
+											{{item.name}}
 											</div> 
 											<div class="newest-supply-price" >
-												{{item.price}}<span >元/箱</span>
+												{{item.price/100}}<span >{{item.unit}}</span>
 											</div>
 										</a>
 									</div>
@@ -100,18 +100,43 @@ export default {
 	data () {
     	return {
 			nowTime:"",
-			mySupply:[{id:"01",news:"赣南脐橙水果新鲜当季整箱橙子应季现季正宗江西脐橙赣州",price:"84",path:"https://image.cnhnb.com//image/jpeg/head/2019/11/05/7d877da93ae947bbab558ab328b67dfc.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
-						{id:"02",news:"手剥巴旦木，精选好果，奶香味。整箱散装，一件10斤",price:"35",path:"https://image.cnhnb.com/image/jpeg/head/2019/11/15/1abca8247a2b467e8cb31a02f57423c4.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
-						{id:"03",news:"洪湖市市大闸蟹  湖北洪湖市大闸蟹原产地直供",price:"115",path:"https://image.cnhnb.com/image/jpeg/head/2019/10/28/1d0acc6e8c6b414a8981754934e22a3c.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
-						{id:"04",news:"迁西板栗  2020迁西老树鲜板栗，不掺假，坏果陪付，（5斤试炒装包邮）",price:"56",path:"https://image.cnhnb.com/image/jpeg/head/2020/11/03/964708fe96c64c89b35b3b1d38ca5a5f.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"}],
-			mySupply02:[{id:"01",news:"长白山人参  长白山6年林下人参白参原皮生晒参白全须一手货源全国包邮",price:"78",path:"https://image.cnhnb.com/image/jpeg/head/2020/03/24/91ab5987a6f84993a5ebf0c824c424ff.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
-						{id:"02",news:"配合饲料  颗粒饲料，适合散养柴鸡，麻鸡，三黄鸡，公鸡，杂交肉鸡，乌鸡等",price:"89",path:"https://image.cnhnb.com/image/jpeg/head/2021/01/14/ec9db5a6380c461fa4e8e64c8eb1d7ea.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
-						{id:"03",news:"冬桃苗  中华二号冬桃树苗，嫁接苗，基地直供，现挖现发，保证成活率",price:"45",path:"https://image.cnhnb.com/image/jpeg/head/2020/11/17/2d8cf45676df4c79bfeaae35020d4018.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"},
-						{id:"04",news:"新疆核桃  2020年新货，新疆薄皮核桃，手捏既开，不满意退",price:"80",path:"https://image.cnhnb.com/image/jpeg/head/2020/06/24/b749d243ccaa4d5e8f393d7ca635547d.jpeg?imageView2/1/w/351/h/351/format/jpg/interlace/1/quality/100/ignore-error/1"}]
+			data:{},
+			data01:null,
+			data02:null,
     	}
   	},
+	methods:{
+		doubleData(array, subGroupLength){
+			let index = 0;
+			let newArray = [];
+			while(index < array.length) {
+			    newArray.push(array.slice(index, index += subGroupLength));
+			}
+			return newArray;
+		},
+		goDetail(pid){
+				this.$router.push({name:'shop',query:{'pid':pid}})
+		}
+	},
 	mounted() {
 		this.nowTime = moment().format('YYYY-MM-DD')
+		//发送axios请求
+		var params = new URLSearchParams()
+		params.append("pageSize",8)
+		this.$axios.get('/product/list/new',{params})
+		.then(res=>{
+		    if(res.status===200){
+		    	this.data =  res.data.data
+				var newdata = this.doubleData(this.data,4)
+				this.data01 = newdata[0]
+				this.data02 = newdata[1]
+		    }else{
+		   	 return 'error'
+		    }
+		})  
+		.catch(err=>{
+			console.log(err)
+		})
 	}
 }
 </script>

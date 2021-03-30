@@ -2,10 +2,6 @@
 	<div id="home">
 		<Head></Head>
 		<router-view></router-view>
-		<div id="content">
-			<contentFirst></contentFirst>
-			<contentTwo></contentTwo>
-		</div>
 		<Foot></Foot>
 	</div>
 </template>
@@ -35,8 +31,6 @@
 	outline: none;
 	box-sizing: border-box;
 	border: none;
-	#content{
-		background-color: #f2f2f2;
-	}
+	
 }
 </style>

@@ -6,23 +6,13 @@
 		<!-- 顶端搜索框 -->
 		<div class="search">
 			<div class="search-select">
-				 <Dropdown>
-				        <a href="javascript:void(0)">
-				            下拉菜单
-							<i class="iconfont icon-114fangxiang_xiangxia"></i>
-				        </a>
-				        <DropdownMenu slot="list" class="ivu-select">
-				            <DropdownItem >供应</DropdownItem>
-				            <DropdownItem >采购</DropdownItem>
-				            <DropdownItem divided>行情</DropdownItem>
-				        </DropdownMenu>
-				</Dropdown>
+				 <Dropdown><a>搜索商品<i class="iconfont icon-kucunguanli"></i></a></Dropdown>
 			</div>
 			<div class="search-text">
 				<i class="iconfont icon-sousuo" ></i>
-				<input type="text" placeholder="搜索您要的货品" value="" class="search-text-models" >
+				<input type="text" placeholder="搜索您要的货品" v-model="keyword" class="search-text-models" >
 			</div>
-			<div class="search-buttn">搜索</div>
+			<a class="search-buttn" @click="goSearch(keyword)">搜索</a>
 		</div>
 		<!-- 二维码图片 -->
 		<div class="qr">
@@ -33,35 +23,39 @@
 		<!-- 顶端下拉搜索框，滚动超过一定距离才显示-->
 		<div class="top-fix" v-show="showFixedSearch">
 			<div  class="search-content">
-				<img  src="http://localhost:8080/static/img/logo.6705a9a.png" alt="" class="search-img">
+				<router-link to="/"><img  src="http://localhost:8080/static/img/logo.6705a9a.png" alt="" class="search-img"></router-link>
 				<div  class="search-div">
 					<div>
 						<div  class="search-select">
 							<Dropdown>
 							        <a href="javascript:void(0)">
-							            下拉菜单
-							           <i class="iconfont icon-114fangxiang_xiangxia"></i>
+							            搜索商品
+							           <i class="iconfont icon-kucunguanli"></i>
 							        </a>
-							        <DropdownMenu slot="list" class="ivu-select">
-							            <DropdownItem >供应</DropdownItem>
-							            <DropdownItem >采购</DropdownItem>
-							            <DropdownItem divided>行情</DropdownItem>
-							        </DropdownMenu>
 							</Dropdown>
 						</div> 
 						<div  class="search-text">
 							<i  class="iconfont icon-sousuo"></i> 
-							<input  type="text" placeholder="搜索您要的货品" class="search-text-models">
+							<input  type="text" placeholder="搜索您要的货品" class="search-text-models" v-model="keyword">
 						</div> 
-						<div  class="search-button">搜索</div>
+						<a  class="search-button" @click="goSearch(keyword)">搜索</a>
 					</div>
 				</div>
 				<div  class="user-login">
-						<div  class="top-title-text">欢迎来到农商平台</div>
-						<div  class="login-div">
-							<img  src="//files.cnhnb.com/fas/home/img/9e2d99c.png" alt="">
-							<div  class="login-div-text">免注册登录</div>
-						</div>
+					<div class="login-div-text02" id="login-div-text02" v-show="this.$store.state.isShow">
+						<router-link to="/login">免注册登录</router-link>
+					</div>
+					<div  class="top-title-text">欢迎来到农商平台</div>
+					<el-dropdown id="user_is_login02" style="display: none;"  @command="handleCommand" v-show="this.$store.state.isShow02"> <!--  -->
+					   <span class="el-dropdown-link">
+						  <img :src="User.image" alt="" id="userimg02">
+					     {{User.username}}<i class="el-icon-arrow-down el-icon--right"></i>
+					   </span>
+					   <el-dropdown-menu slot="dropdown" >
+						 <el-dropdown-item command="goPerson">个人中心</el-dropdown-item>
+					     <el-dropdown-item command="cancel">注销账户</el-dropdown-item>
+					   </el-dropdown-menu>
+					</el-dropdown>
 				</div>
 			</div>
 		</div>
@@ -75,9 +69,39 @@ export default {
 	data () {
     	return {
       		showFixedSearch:false,
+			User:{
+				username:'',
+				img:""
+			},
+			keyword:"",
+			oldKey:""
     	}
   	},
+	watch:{
+		
+	},
 	methods:{
+		handleCommand(command){
+			if(command === 'cancel'){
+				localStorage.setItem("currentUser",null)//登出的时候，清空sessionStorage里的东西
+				this.$store.dispatch('setUser',null)     //store清空
+				this.User = {}
+				console.log("注销以后"+ this.$store.state.currentUser)
+				this.$store.state.isShow = true
+				this.$store.state.isShow02 = false
+				window.location.href ="/"
+				//this.$router.push('/')
+			}else if(command === 'goPerson' && this.$route.path !== '/personspace/shouye'){
+				if(this.$store.state.isLogin === true && this.$store.state.currentUser){//这里不仅要要求是登陆状态，
+					if(this.$store.state.currentUser.role === 1){//说明role是普通用户
+						this.$router.push('/personspace/shouye')
+					}
+				}else{
+					this.$router.push('/login')
+				}
+			}
+			
+		},
 		 showSearch() {
 			 // 获取当前滚动条向下滚动的距离
 			 let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -88,10 +112,20 @@ export default {
 				 this.showFixedSearch = false;
 			 }
 		 },
+		 goSearch(a){/* 搜索功能 */
+			this.$router.push({name:'Supply',query:{'name':''}})
+			this.$router.push({name:'Supply',query:{'name':this.keyword}})
+		 }
 	},
 	mounted() {
 			// 监听页面滚动事件
 			window.addEventListener("scroll", this.showSearch)
+			
+			if(this.$store.state.isLogin === true && this.$store.state.currentUser){//这里不仅要要求是登陆状态，
+				if(this.$store.state.currentUser.role === 1){//说明role是普通用户
+					this.User = this.$store.state.currentUser
+				}
+			}
 	}
 }
 </script>
@@ -285,6 +319,11 @@ export default {
 				font-size: 12px;
 				line-height: 60px;
 				display: inline-block;
+				#userimg02{
+					width: 30px;
+					height: 40px;
+					background-color: pink;
+				}
 				.top-title-text{
 					display: inline-block;
 					font-family: MicrosoftYaHei;
@@ -292,6 +331,15 @@ export default {
 					font-size: 12px;
 					color: #444;
 					letter-spacing: 0;
+				}
+				.login-div-text02{
+					cursor: pointer;
+					position: relative;
+					display: inline-block;
+					a{
+						text-decoration: none;
+						color: #ff862c;
+					}
 				}
 				.login-div{
 					position: relative;

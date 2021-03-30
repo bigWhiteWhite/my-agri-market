@@ -9,6 +9,20 @@
 		components:{
 		},
 		name: 'App',
+		created() {
+			 //在页面加载时读取localStorage里的状态信息
+			localStorage.getItem("currentUser") && this.$store.replaceState(Object.assign(this.$store.state,JSON.parse(localStorage.getItem("currentUser"))));
+			//在页面刷新时将vuex里的信息保存到sessionStorage里
+			window.addEventListener("beforeunload",()=>{
+			  localStorage.setItem("currentUser",JSON.stringify(this.$store.state))
+			});
+			// 兼容iphone手机
+			window.addEventListener("pagehide",()=>{
+			  localStorage.setItem("currentUser",JSON.stringify(this.$store.state))
+			});
+			//如果页面加载的时候sessionstorage没有的话 就从vuex中取
+			localStorage.setItem("isLogin",this.$store.state.isLogin)
+		},
 		data(){
 			return {
 				

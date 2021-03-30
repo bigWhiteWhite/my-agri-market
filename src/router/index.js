@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+/* 首页路由 */
 import Home from '../components/home/home.vue'
+import Content from '../components/home/contentFirst/content.vue'
+import Supply from '../components/home/supply/supply.vue'
+//登陆页面开始
 import Login from '../components/login/01-login.vue'
 import codeLogin from '../components/login/02-code-login.vue'
 import vaildCodeLogin from '../components/login/03-vaild-code-login.vue'
+import userRegister from '../components/register/user-register.vue'
+//登录页面结束
 import Shop from '../components/shop/shop.vue'
 import Buy from '../components/shop/pages/01-buy.vue'
 import buyCar from '../components/shop/pages/02-buy-car.vue'
@@ -38,8 +43,24 @@ export default new Router({
 	routes: [
 	{//首页
 	  path: '/',
-	  name: 'home',
-	  component:Home
+	  component:Home,
+	  children:[
+		  {
+			  path:'',//path最左侧的/永远代表根路由
+			  //name:'Content',
+			  component:Content
+		  },
+		  {
+			  path:'content',//path最左侧的/永远代表根路由
+			  name:'Content',
+			  component:Content
+		  },
+		  {
+			  path:'supply',//path最左侧的/永远代表根路由
+			  name:'Supply',
+			  component:Supply
+		  },
+	  ]
 	},
 	{//登陆页面
 	  path: '/login',
@@ -54,6 +75,11 @@ export default new Router({
 			path:'codelogin',        //省略写法，去掉斜杠
 			name:'codeLogin',
 			component:codeLogin
+		},
+		{
+			path:'userregister',        //省略写法，去掉斜杠
+			name:'userRegister',
+			component:userRegister
 		},
 	  ]	
 	},
