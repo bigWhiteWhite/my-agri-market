@@ -193,7 +193,8 @@
 			    	this.data =  res.data.data
 					this.imglist =  res.data.data.imageList
 					this.ImgUrl = this.imglist[0].url
-					//console.log(this.imglist[0].url)
+					console.log(123)
+					console.log(this.data)
 					//console.log(this.imglist)
 			    }else{
 			   	 return 'error'

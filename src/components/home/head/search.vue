@@ -17,7 +17,7 @@
 		<!-- 二维码图片 -->
 		<div class="qr">
 			<img src="../../../resource/img/logo.png" alt="">
-			<div class="head-qr-text" >手机惠农网</div>
+			<div class="head-qr-text" >农商平台</div>
 		</div>
 		
 		<!-- 顶端下拉搜索框，滚动超过一定距离才显示-->

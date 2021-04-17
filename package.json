@@ -10,9 +10,12 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "element-china-area-data": "^5.0.2",
     "element-ui": "^2.15.0",
     "moment": "^2.29.1",
     "save": "^2.4.0",
+    "v-region": "^2.2.2",
     "view-design": "^4.5.0",
     "vue": "^2.5.2",
     "vue-cookies": "^1.7.4",

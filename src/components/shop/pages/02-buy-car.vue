@@ -53,6 +53,8 @@
 		},
 		mounted() {
 			this.$store.state.buyActive = 1
+			
+			
 		}
 	}
 </script>

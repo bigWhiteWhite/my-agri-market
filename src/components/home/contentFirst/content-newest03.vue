@@ -30,19 +30,19 @@ export default {
 	name: '',
 	data () {
     	return {
-      		market:[{id:"00",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-baoxincai"},
-						{id:"01",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-bottom"},
-						{id:"02",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-righttop"},
-						{id:"03",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-bottom"},
-						{id:"04",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-bottom"},
-						{id:"05",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-righttop"},
-						{id:"06",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-bottom"},
-						{id:"07",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-bottom"},
-						{id:"08",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-righttop"},
-						{id:"09",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-bottom"},
-						{id:"10",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-righttop"},
-						{id:"11",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-bottom"},
-						{id:"12",source:"市场",name:"松树菌",time:"02-06",price:"28",upDown:"iconfont icon-righttop"}]
+      		market:[{id:"00",source:"市场",name:"松树菌",time:"04-05",price:"28",upDown:"iconfont icon-baoxincai"},
+						{id:"01",source:"市场",name:"松树菌",time:"04-06",price:"28",upDown:"iconfont icon-bottom"},
+						{id:"02",source:"市场",name:"松树菌",time:"04-07",price:"32",upDown:"iconfont icon-righttop"},
+						{id:"03",source:"市场",name:"松树菌",time:"04-08",price:"30",upDown:"iconfont icon-bottom"},
+						{id:"04",source:"市场",name:"松树菌",time:"04-09",price:"28",upDown:"iconfont icon-bottom"},
+						{id:"05",source:"市场",name:"松树菌",time:"04-10",price:"35",upDown:"iconfont icon-righttop"},
+						{id:"06",source:"市场",name:"松树菌",time:"04-11",price:"30",upDown:"iconfont icon-bottom"},
+						{id:"07",source:"市场",name:"松树菌",time:"04-12",price:"28",upDown:"iconfont icon-bottom"},
+						{id:"08",source:"市场",name:"松树菌",time:"04-13",price:"40",upDown:"iconfont icon-righttop"},
+						{id:"09",source:"市场",name:"松树菌",time:"04-14",price:"38",upDown:"iconfont icon-bottom"},
+						{id:"10",source:"市场",name:"松树菌",time:"04-15",price:"42",upDown:"iconfont icon-righttop"},
+						{id:"11",source:"市场",name:"松树菌",time:"04-16",price:"40",upDown:"iconfont icon-bottom"},
+						{id:"12",source:"市场",name:"松树菌",time:"04-17",price:"55",upDown:"iconfont icon-righttop"}]
     	}
   	}
 }

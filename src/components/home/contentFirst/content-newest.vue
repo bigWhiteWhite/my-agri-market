@@ -58,7 +58,7 @@ v<template>
 						<div class="lastest-purchase-top-title">最新采购</div>
 						<span>实时掌握采购信息</span>
 					</div>
-					<a href="/" target="_blank" class="more">
+					<a href="#" target="_blank" class="more">
 						<div class="right">
 							<i class="iconfont icon-lanmujiantou" style="font-size:12px;"></i>
 							<i class="iconfont icon-fangxiangyuan-xiangyou"></i>
@@ -144,12 +144,12 @@ export default {
 <style lang="scss" scoped>
 .content-newest{
 	position: relative;
-	height: 635px;
+	//height: 635px;
 	background-color: #f2f2f2;
 	.newest{
 		position: relative;
 		background-color: #f2f2f2;
-		top: 160px;
+		top: 152px;
 		height: 475px;
 		display: -webkit-box;
 		display: flex;

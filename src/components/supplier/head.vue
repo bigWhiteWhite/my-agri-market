@@ -1,7 +1,6 @@
 <template>
 	<div class="supplier-head">
 		<div id="header-logo" class="logo-bg">
-			<img src="https://files.cnhnb.com/merchant/logo.jpg" class="logo-icon">
 			<div class="logo-title" @click="toShouYe">
 				<div class="title">供应商后台</div> 
 				<span class="sub-title"></span>
@@ -58,7 +57,7 @@
 		.logo-title{
 			position: absolute;
 			top: 18px;
-			left: 110px;
+			left: 20px;
 			right: 0;
 			text-align: left;
 			.title{

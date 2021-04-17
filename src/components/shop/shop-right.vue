@@ -59,8 +59,8 @@
 		<!-- 下单按钮 -->
 		<div class="action">
 			<el-button type="info">电话询问</el-button>
-			<el-button type="danger">
-					<router-link to="/Buy">立刻采购</router-link>
+			<el-button type="danger" @click="goCar()">
+				立刻采购
 			</el-button>
 		</div>
 	</div>
@@ -75,11 +75,18 @@
 				value1: 100,
 				data:{},
 				message:{},
+				productId:0
+			}
+		},
+		methods:{
+			goCar(){
+				this.$router.push({path:'buy',query:{'count':this.value1,'productId':this.productId}})
 			}
 		},
 		mounted() {
+			this.productId = this.$route.query.pid
 			var params = new URLSearchParams()
-			params.append("pid",this.$route.query.pid)/* this.$store.state.pid */
+			params.append("pid",this.$route.query.pid)
 			this.$axios.post('/product/detail/',params)
 			.then(res=>{
 			    if(res.status===200){

@@ -1,13 +1,6 @@
 <template>
   <div class="contentFirst">
 	<div class="content-outSwiper">
-		<Carousel  loop  autoplay><!-- content外面轮播图 -->
-		        <CarouselItem v-for="(item,index) in outSwiper" :key=item.id>
-		            <div class="demo-carousel">
-						<img :src="item.path" alt="">
-					</div>
-		        </CarouselItem>
-		</Carousel>
 		<div class="content-inSwiper">
 			<div class="fruit-left-navs"><!-- 菜单导航 -->
 				<el-menu  class="el-menu-vertical-demo"
@@ -29,13 +22,13 @@
 				</el-menu>
 			</div>
 			<div class="content-inSwiper-Swiper"><!-- content里面轮播图 -->
-				<Carousel  loop    :autoplay="setting.autoplay" radius-dot>
-				        <CarouselItem v-for="(item,index) in inSwiper" :key=item.id class='noaho02'>
-				            <div class="demo-carousel">
-								<img :src="item.path" alt="">
-							</div>
-				        </CarouselItem>
-				</Carousel>
+				<el-carousel height="380px" >
+				      <el-carousel-item v-for="(item,index) in inSwiper" :key=item.id class='noaho02'>
+				        <div class="demo-carousel">
+				        	<img :src="item.path" alt="" style="width: 100%;height: 100%;">
+				        </div>
+				      </el-carousel-item>
+				</el-carousel>
 			</div>
 			<ul class="fruit-groom"><!-- 批发等 -->
 				<li v-for="(item,index) in fruit" :key='item.id'>
@@ -65,17 +58,15 @@ export default {
 		return {
 			data:{},
 			list:{},
-			setting:{autoplay:true},
+			childCategory:[
+				//{"禽畜苗","鸡苗","鸭苗","鹅苗","猪苗","蛋类"}
+			],
+			setting:{autoplay:false},
 			isCollapse: true,
-			inSwiper:[{id:"01",title:"蔬菜水果",path:'https://image.cnhnb.com/image/jpg/miniapp/2021/01/26/f71e5c9fea0646f6a1c0d2e245928318.jpg'},
-					{id:"02",title:"新鲜水产",path:'https://image.cnhnb.com/image/jpg/miniapp/2021/01/15/716c6ac83f3a406da36812cc07c66e42.jpg'},
-					{id:"03",title:"禽畜肉蛋",path:'https://image.cnhnb.com/image/jpg/miniapp/2020/03/26/718b88f8ec514d96908ab9048da7fb76.jpg'},
-					{id:"04",title:"农副加工",path:'https://image.cnhnb.com/image/jpg/miniapp/2021/01/27/13f53e78c1c34decb631577790026038.jpg'}
-					],
-			outSwiper:[{id:"01",title:"蔬菜水果",path:'https://image.cnhnb.com/image/jpg/miniapp/2021/01/27/9fc39e4959b44330ba994a323c9e3509.jpg'},
-					{id:"02",title:"新鲜水产",path:'https://image.cnhnb.com/image/jpg/miniapp/2021/01/15/a416c131ea0146da991bb92880340579.jpg'},
-					{id:"03",title:"禽畜肉蛋",path:'https://image.cnhnb.com/image/jpg/miniapp/2020/03/26/34a3d660ba614cf9ab500b8c2ef0c6d4.jpg'},
-					{id:"04",title:"农副加工",path:'https://image.cnhnb.com/image/jpg/miniapp/2021/01/27/9fc39e4959b44330ba994a323c9e3509.jpg'}
+			inSwiper:[{id:"01",title:"蔬菜水果",path:'../../../../static/农贸轮播背景/swiper02.jpg'},
+					{id:"02",title:"新鲜水产",path:'../../../../static/农贸轮播背景/swiper01.jpg'},
+					{id:"03",title:"禽畜肉蛋",path:'../../../../static/农贸轮播背景/swiper03.jpg'},
+					{id:"04",title:"农副加工",path:'../../../../static/农贸轮播背景/swiper04.jpg'}
 					],
 			fruit:[{id:'1',path:"//files.cnhnb.com/fas/home/img/60e6c2b.png"},
 					{id:'2',path:"https://files.cnhnb.com/fas/home/img/0bd5720.png"},
@@ -131,7 +122,7 @@ export default {
 		.content-inSwiper{
 			position: relative;
 			left: 0;
-			top: -385px;
+			top: 0px;
 			margin: 0 auto;
 			width: 1200px;
 			height: 512px;
@@ -195,30 +186,13 @@ export default {
 			.content-inSwiper-Swiper{
 				position: relative;
 				top: -507px;
-				left: 200px;
-				width: 770px;
-				height: 330px;
-				.ivu-carousel{
-					>>>.ivu-carousel-dots{
-						height: 35px;
-					}
-					>>>.ivu-carousel-dots li button.radius{//改变导航点
-						width: 15px;
-						height: 15px;
-						//background-color: #ff862c;
-					}
-					>>>.ivu-carousel-dots li.ivu-carousel-active>button{//改变active的导航点
-						opacity: 0.8;
-						//background-color: #39bf3e;
-						width: 15px;
-						height: 15px;
-					}
-				}
-				
+				left: 210px;
+				width: 990px;
+				height: 380px;
 			}
 			
 			.fruit-groom{
-				margin-top: -451px;
+				margin-top: -495px;
 				margin-right: 0px;
 				float: right;
 				li{
@@ -233,11 +207,6 @@ export default {
 			}
 			
 		}
-		
-		/* .ivu-carousel{
-			height: 380px;
-			width: 770px;
-		} */
 	}
 }
 </style>

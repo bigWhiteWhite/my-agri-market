@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="cart-tbody" v-for="(item,index) in buyList">
+		<div class="cart-tbody" v-for="(item,index) in carShop">
 			<!-- 购买商品标题 -->
 			<div class="shop">
 				<div class="cart-checkbox">
@@ -8,7 +8,7 @@
 				</div>
 				<span class="shop-txt">
 					<a href="#" class="shop-name" target="_blank" rel="noreferrer">
-						{{item.title}}
+						{{item.name}}
 					</a>
 				</span>
 			</div>
@@ -20,15 +20,16 @@
 						<div class="item-form">
 							<div class="cell p-checkbox">
 								<div class="cart-checkbox">
-									<input type="checkbox" name="checkItem" class="jdcheckbox" @click="selectOne(index)">
-									<span class="line-circle"></span>
+									<input type="checkbox" name="checkItem"  
+									class="jdcheckbox" @click="selectOne({productId:item.productId,index:index})">
+									<span class="line-circle"></span><!-- :value="index" v-model="radio" -->
 								</div>
 							</div>
 							<div class="cell p-goods">
 								<div class="goods-item">
 									<div class="p-img ">
 										<a href="/" target="_blank">
-											<img :src=item.img>
+											<img :src=item.image>
 										</a>
 									</div>
 									<div class="p-msg">
@@ -44,19 +45,19 @@
 							</div>
 							<div class="cell p-props"></div>
 							<div class="cell p-price">
-								<span class="p-price-cont">￥{{item.price}}</span>
+								<span class="p-price-cont">￥{{item.price/100}}</span>
 							</div>
 							
 							<div class="cell p-quantity">
 								<!-- 计数器 -->
-								<el-input-number v-model="item.num" :min="1"  size="mini"
-														@change="myallNum">
+								<el-input-number v-model="item.quantity" :min="1"  size="mini"
+														@change="myallNum({count:item.quantity,productId:item.productId})">
 								</el-input-number><!--  @change="handleChange" -->
 								<p class="ac">有货</p>
 							</div>
-							<div class="cell p-sum"><strong>¥{{item.price*item.num}}</strong></div>
+							<div class="cell p-sum"><strong>¥{{item.price/100*item.quantity}}</strong></div>
 							<div class="cell p-ops">
-								<a class="p-ops-item" @click="del(index)">删除</a>
+								<el-button type="text" @click="deleteShop(item.productId)">删除</el-button>
 							</div>
 						</div>
 						<div class="item-line clearfix"></div>
@@ -74,13 +75,69 @@ export default {
 	data () {
     	return {
       		num:1,
+			//radio:"0",
+			allProductId:[]
     	}
   	},
 	computed:{
-		...mapState(['buyList']),
+		...mapState(['buyList','carShop']),
 	},
 	methods:{
-	    ...mapActions(['del','selectOne','myallNum',]),
+	    ...mapActions(['selectOne','myallNum',]),
+		deleteShop(productId){
+			this.$confirm('确定从购物车删除此商品吗?', '删除商品', {
+			  confirmButtonText: '确定',
+			  cancelButtonText: '取消',
+			  type: 'warning'
+			}).then(() => {
+			  this.$message({
+				type: 'success',
+				message: '删除成功!'
+			  });
+			  this.$nextTick(()=>{
+				  this.$store.dispatch('del',productId)
+			  })
+			}).catch(() => {
+			  this.$message({
+				type: 'info',
+				message: '已取消删除'
+			  });          
+			});
+		}
+	},
+	mounted() {
+		this.$axios.get('/cart/list')//渲染购物车列表
+		.then(res=>{
+			console.log(res)
+			this.$store.state.carShop = res.data.data
+			console.log(this.$store.state.carShop)
+		})
+		.catch(err=>{
+			console.log(err)
+		})
+		checkItem = document.getElementsByName("checkItem")
+		let selectAll = document.getElementsByName("select-all")
+		checkItem.forEach(item=>{//改变全选按钮
+			if(item.checked === false){
+				this.$store.state.allSelect=false
+				selectAll[0].checked = false
+				selectAll[1].checked = false
+				return
+			}
+		})
+		let checkItem = document.getElementsByName("checkItem")
+		this.$store.state.allNum = 0
+		this.$store.state.carShop.forEach((item,index)=>{//很重要，循环遍历购物车，判断谁的selected是1，改变单选框的状态
+			if(item.selected === 1){
+				checkItem[index].checked = true
+				this.$store.state.allNum +=1
+			}else{
+				checkItem[index].checked = false
+			}
+		})
+		//计算购物车总价
+		this.$store.dispatch('allPrice')
+		
 	}
 }
 </script>
@@ -198,6 +255,10 @@ export default {
 							overflow: visible;
 							a{
 								color: #666;
+								img{
+									width: 100%;
+									height: 100%;
+								}
 							}
 						}
 						.p-msg{
@@ -225,7 +286,7 @@ export default {
 					@include t1
 					position: relative;
 					width: 150px;
-					padding-right: 40px;
+					padding-right: 50px;
 					text-align: right;
 					outline: none;
 					margin-left: 70px;

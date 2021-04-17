@@ -3,9 +3,9 @@
 		<Head></Head>
 		<div class="user-title-bg">
 			<div class="user-title-content">
-				<div class="goback">
+				<!-- <div class="goback">
 					<router-link to="/"><img  :src="currentUser.image" alt="" class="search-img"></router-link>
-				</div>
+				</div> -->
 				<el-divider></el-divider>
 			</div>
 		</div>
@@ -85,8 +85,8 @@ export default {
 	mounted() {
 		//先去除logo
 		let logo = document.querySelector('.title')
-		logo.style.display = 'none',
-		console.log(this.$store.state.currentUser)
+		logo.style.display = 'none'
+		//console.log(this.$store.state.currentUser)
 	}
 }
 </script>

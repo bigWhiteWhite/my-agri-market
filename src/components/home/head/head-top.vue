@@ -80,6 +80,9 @@ export default {
 					this.$router.push('/login')
 				}
 			}
+			if(key === '3' && this.$route.path !== '/supplier'){//为了防止多次点击首页引起错误，也就是不能首页跳到首页
+				this.$router.push('/supplier')
+			}
 		},
 		handleCommand(command){
 			if(command === 'cancel'){

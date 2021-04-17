@@ -4,13 +4,18 @@
 			<div class="shop-left-content">
 				<div class="sell-information">
 					<div class="user-img">
-						<img src="//image.cnhnb.com/20b0aaeb-c6cb-48c1-9481-80952abca595" alt="用户头像">
+						<img :src="currentUser.image" alt="用户头像">
 					</div>
 					<div class="user-name">
 						{{currentUser.username}}
 						<div class="sayHello">
 							上午好
 						</div>
+					</div>
+					<div class="changeUserImg">
+						<el-upload action="string" :http-request="uploadImg":show-file-list="false">
+						   <el-button  size="small" type="primary">修改头像</el-button>
+						</el-upload>
 					</div>
 				</div>
 			</div>
@@ -46,7 +51,7 @@
 				</div>
 				<div class="user-hot-content">
 					<div class="eye-renderer__inner" v-for="(item,index) in list">
-						<a href="/gongying/4770591/" target="">
+						<a @click="toShop(item.pid)" target="">
 							<div class="proinfo-list horizontal">
 								<p class="simg"><img :src="item.image"class="s-img-default" lazy="loaded"></p>
 								<p class="pro-title fs12 gray3">{{item.name}}</p>
@@ -65,9 +70,7 @@
 </template>
 
 <script>
-	import {
-		mapState
-	} from 'vuex'
+	import {mapState} from 'vuex'
 	export default {
 		name: '',
 		computed: {
@@ -78,6 +81,44 @@
 				list:{}
 			}
 		},
+		methods:{
+			toShop(pid){
+				this.$router.push({name:'shop',query:{'pid':pid}})
+			},
+			uploadImg(item) {
+			      var isFlag = (item.file.type == 'image/jpeg' || item.file.type == 'image/png')? true : false;
+			      if(!isFlag){
+			        this.$message({
+			          type: 'warning',
+			          message: '上传图片只能是 JPG、PNG 格式!'
+			        })
+			        return false
+			      }
+			      let formData = new FormData();
+			      formData.append('file', item.file);//若查看可使用 formData.get('file')
+				  this.$axios.post('/shop/upload/file',formData)
+				  .then(res=>{
+						   var params = new URLSearchParams
+						   params.append('image',res.data.data)
+						   this.$axios.post('/user/update/image',params)
+						   .then(newimage=>{
+							   newimage.data.image = res.data.data
+							   this.$store.state.currentUser.image = res.data.data
+						   })
+						   .catch(err=>{
+							   console.log(err)
+						   })
+						   this.$message({
+								type: 'success',
+								message: '上传成功'
+						   })
+				  })
+				  .catch(err=>{
+					  console.log(err)
+					  return 0
+				  })
+			    }
+		},
 		mounted(){
 			var params = new URLSearchParams
 			params.append("pageNum",1)
@@ -85,7 +126,7 @@
 			this.$axios.get('/product/list/all',{params})
 			.then(res=>{
 				this.list = res.data.data.list
-				console.log(this.list)
+				//console.log(this.list)
 			})
 			.catch(err=>{
 				console.log(err)
@@ -123,7 +164,9 @@
 						height: 74px;
 						width: 74px;
 						margin: 0 auto;
-
+						z-index: 1;
+						border: 1px solid #fff;
+						border-radius: 50px;
 						img {
 							height: 100%;
 							width: 100%;
@@ -147,6 +190,20 @@
 							font-size: 14px;
 							color: #fff;
 							letter-spacing: 0;
+						}
+					}
+					.changeUserImg{
+						position: relative;
+						margin-top: 50px;
+						text-align: center;
+						>>>.el-button--primary{
+							background-color: #39bf3e ;
+							opacity: 0.5;
+							border: none;
+							&:hover{
+								color: #fff;
+								opacity: 1;
+							}
 						}
 					}
 				}

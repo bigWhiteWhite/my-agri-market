@@ -13,7 +13,10 @@
 				</div>
 			</div>
 
-			<div class="login-bg"><img src="https://files.cnhnb.com/potato/img/loginBackground.b4a370f5.jpg" alt=""></div>
+			<div class="login-bg" style="background-color: #38ca64;">
+				<div style="width: 900px;height: 100px;font-size: 50px;color: #fff;line-height: 620px;margin-left: 100px;">
+					欢迎来到农商平台，立刻加入我们吧！</div>
+			</div>
 		</div>
 
 		<Foot></Foot>

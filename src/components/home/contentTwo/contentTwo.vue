@@ -34,7 +34,7 @@
 										</div>
 										<div class="shops-text">
 											<div class="shops-price-bg">
-												<div class="shops-price">¥<span class="sp1">{{item.price}}</span><span class="sp2">{{item.unit}}</span></div>
+												<div class="shops-price">¥<span class="sp1">{{item.price/100}}</span><span class="sp2">元/头</span></div>
 												<div class="turnover">成交15.4万元</div>
 											</div>
 										</div>
@@ -91,32 +91,17 @@
 			}
 		},
 		mounted() {
-			/* var params = new URLSearchParams()
-			params.append("categoryId","13")
-			params.append("pageNum","1")
-			params.append("pageSize","1")
-			console.log(params)
-			this.$axios.get('/product/list',params)
+			var params = new URLSearchParams
+			params.append("name","猪")
+			params.append("pageNum",1)
+			params.append("pageSize",10)
+			//console.log(this.currentPage)
+			this.$axios.get('/product/list/all',{params})
 			.then(res=>{
-				console.log(res)
+				this.data = res.data.data.list
+				//console.log(this.currentPage)
+				//console.log(this.data)
 			})
-			.catch(err=>{
-				
-			}) */
-			var params = new URLSearchParams()
-			params.append("categoryId",13)//categoryId 
-			params.append("pageNum",1)//pageNum 
-			params.append("pageSize",1)//pageSize 
-			this.$axios.get('/product/list',{params})
-			.then(res=>{
-			   if(res.status===200){
-			    	//console.log(res.data.data.list)
-					this.data = res.data.data.list
-					//console.log(this.data)
-			    }else{
-			   	 return 'error'
-			    }
-			})  
 			.catch(err=>{
 				console.log(err)
 			})
@@ -134,7 +119,7 @@
 			position: relative;
 			margin-left: auto;
 			margin-right: auto;
-			margin-top: 20px;
+			margin-top: 150px;
 			width: 1200px;
 			background-color: #fff;
 
@@ -288,12 +273,13 @@
 					.index-item-bg{
 						.product-v2{
 							position: relative;
-							height: 300px;
-							width: 200px;
+							height: 297px;
+							width: 245px;
 							border: 2px solid #fff;
 							background-color: #fff;
-							margin-top: 0;
-							margin-left: 1px;
+							margin-bottom: 7px;
+							margin-left: 6px;
+							padding-bottom: -4px;
 							a{
 								text-decoration: none;
 								.data-imgs{
@@ -417,7 +403,7 @@
 									display: flex;
 									-webkit-box-align: center;
 									align-items: center;
-									margin-top: 14px;
+									margin-top: 4px;
 									-webkit-box-pack: justify;
 									justify-content: space-between;
 									height: 12px;

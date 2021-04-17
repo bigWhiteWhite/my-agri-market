@@ -31,6 +31,22 @@ export default {
     	}
   	},
 	cumputed:{
+	},
+	created() {
+		/* 跳转到购物车，提交商品数量和id */
+		this.$route.query.productId  = this.$route.query.productId *1
+		this.$route.query.count   = this.$route.query.count  *1
+		var params = new URLSearchParams
+		params.append('count',this.$route.query.count)
+		params.append('productId',this.$route.query.productId)
+		this.$axios.post('/cart/add',params)
+		.then(res=>{
+			/* console.log(res)
+			console.log("我是add") */
+		})
+		.catch(err=>{
+			
+		})
 	}
 }
 </script>

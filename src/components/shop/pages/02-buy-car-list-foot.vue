@@ -6,7 +6,7 @@
 				<div class="selected-item-list hide" style="display: none;"></div>
 				<div class="options-box">
 					<div class="left">
-						<div class="select-all"><input type="checkbox" class="jdcheckbox" @click="selectAll"><span>全选</span></div>
+						<div class="select-all"><input type="checkbox" class="jdcheckbox" name="select-all" @click="selectAll"><span>全选</span></div>
 						<div class="operation">
 							<a class="opt-batch-remove" @click="clearSelectBuys">删除选中的商品</a>
 							<a class="opt-cleaner" @click="clearBuys">
@@ -17,10 +17,10 @@
 					<div class="right">
 						<div class="combine">
 							<div class="btn-area">
-								<router-link :to="{name:'confirmMessage'}">
+								<div  class="pay" @click="goConfirm"><!-- :to="{name:'confirmMessage'}" -->
 									去结算
 									<b></b>
-								</router-link>
+								</div>
 							</div>
 							<div class="price-sum">
 								<div>
@@ -64,47 +64,52 @@
 		},
 		methods:{
 			...mapActions(['selectAll','myallNum']),
+			//跳转确认物流界面
+			goConfirm(){
+				let mes = 0
+				this.$store.state.carShop.forEach((item,index)=>{//很重要，循环遍历购物车，判断谁的selected是1，改变单选框的状态
+					if(item.selected === 1){
+						mes = 1
+						return this.$router.push({name:'confirmMessage'})
+					}
+				})
+				if(mes==0){
+					return alert("至少选择一个商品吧")
+				}
+			},
 			/* 清理购物车 */
 			clearBuys(){
 				if (!confirm("确认清空购物车吗")) {
 					return
 				}else{
-					this.$store.state.buyList = []
+					this.$store.state.carShop.forEach((item,index)=>{//很重要，循环遍历购物车，判断谁的selected是1，改变单选框的状态
+						let productId = item.productId
+						//console.log(typeof(productId) )
+						this.$store.dispatch('del',productId)
+						this.$store.state.allNum = 0
+						this.$store.state.allPrice = 0
+					})
 				}
 			},
 			/* 清理选中的商品 */
 			clearSelectBuys(){
-				let jdcheckbox = document.getElementsByClassName("jdcheckbox")
-				console.log(jdcheckbox)
+				//let jdcheckbox = document.getElementsByClassName("jdcheckbox")
+				//console.log(jdcheckbox)
 				if (!confirm("确认删除选中的商品吗")) {
 					return
 				}else{
-					jdcheckbox.checked = false
-					console.log(this.$store.state.allSelectedBuys)
-					console.log(this.$store.state.buyList)
-					/* for(var i=this.$store.state.buyList.length-1;i>=0;i--){
-						for(var j=this.$store.state.allSelectedBuys.length-1;j>=0;j--){
-							this.$store.state.buyList.splice(j,1);
-							this.$store.state.allSelectedBuys.splice(j,1);
-							jdcheckbox.checked = false
+					this.$store.state.carShop.forEach((item,index)=>{//很重要，循环遍历购物车，判断谁的selected是1，改变单选框的状态
+					console.log("owso")
+						if(item.selected === 1){
+							//console.log(item)
+							let productId = item.productId
+							//console.log(typeof(productId) )
+							this.$store.dispatch('del',productId)
+							this.$store.state.allNum = 0
+							this.$store.state.allPrice = 0
 						}
-					} */
-					var abc=[];
-					for (var a = 0;a < this.$store.state.allSelectedBuys.length;a++) {
-						abc.push(this.$store.state.allSelectedBuys[a].id)
-						console.log(abc)
-					}
-					for(var i=this.$store.state.buyList.length-1;i>=0;i--){
-							if (abc.indexOf(this.$store.state.buyList[i].id)!==-1) {
-								var index = abc.indexOf(this.$store.state.buyList[i].id);
-								this.$store.state.allSelectedBuys.splice(index,1);
-								this.$store.state.buyList.splice(i,1);
-							}
-							jdcheckbox.checked = false
-							console.log(1)
-					}
-					jdcheckbox.checked = false
-					this.$store.dispatch('myallNum')
+					})
+					//this.$store.dispatch('del')
 				}
 			},
 			/*实现结算的动态浮动的效果*/
@@ -213,7 +218,7 @@
 							.btn-area{
 								float: right;
 								height: 50px;
-								a{
+								.pay{
 									display: block;
 									position: relative;
 									width: 94px;
