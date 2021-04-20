@@ -4,7 +4,7 @@
 		    <el-menu default-active="2" class="el-menu-vertical-demo" :router = true active-text-color="#39bf3e">
 				<el-menu-item index="/supplier/index">
 				  <i class="iconfont icon-nav_home-active"></i>
-				  <span slot="title">首页</span>
+				  <span slot="title">添加商品</span>
 				</el-menu-item>
 		      <el-submenu index="2">
 		        <template slot="title">
@@ -26,6 +26,16 @@
 		          <el-menu-item index="/supplier/supplyrelease">发布列表</el-menu-item>
 		        </el-menu-item-group>
 		      </el-submenu>
+			  <el-submenu index="4">
+			    <template slot="title">
+			      <i class="iconfont icon-zhiliangguanli"></i>
+			      <span>农家乐管理</span>
+			    </template>
+			    <el-menu-item-group>
+			      <el-menu-item index="/supplier/agritainmentAdd">添加农家乐</el-menu-item>
+			      <el-menu-item index="/supplier/agritainmentList">我的农家乐</el-menu-item>
+			    </el-menu-item-group>
+			  </el-submenu>
 		      
 		    </el-menu>
 		</el-col>

@@ -70,6 +70,14 @@
 				this.$store.state.carShop.forEach((item,index)=>{//很重要，循环遍历购物车，判断谁的selected是1，改变单选框的状态
 					if(item.selected === 1){
 						mes = 1
+						this.$axios.post('/order/createForCart') //创建订单
+						.then(res=>{
+							console.log(res)
+						})
+						.catch(err=>{
+							
+						})
+						
 						return this.$router.push({name:'confirmMessage'})
 					}
 				})

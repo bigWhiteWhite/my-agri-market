@@ -4,16 +4,26 @@ import Router from 'vue-router'
 import Home from '../components/home/home.vue'
 import Content from '../components/home/contentFirst/content.vue'
 import Supply from '../components/home/supply/supply.vue'
+import Agritainment from '../components/home/agritainment/agritainment.vue'
+import agritainmentDetail from '../components/home/agritainment/agritainment-detail.vue'
 //登陆页面开始
 import Login from '../components/login/01-login.vue'
 import codeLogin from '../components/login/02-code-login.vue'
 import vaildCodeLogin from '../components/login/03-vaild-code-login.vue'
 import userRegister from '../components/register/user-register.vue'
 //登录页面结束
+//管理员登陆
+import adminLogin from '../components/admin-login/01-login.vue'
+import adminCodeLogin from '../components/admin-login/02-code-login.vue'
+import adminVaildCodeLogin from '../components/admin-login/03-vaild-code-login.vue'
+import adminUserRegister from '../components/register/admin-register.vue'
+
+//购物车界面
 import Shop from '../components/shop/shop.vue'
 import Buy from '../components/shop/pages/01-buy.vue'
 import buyCar from '../components/shop/pages/02-buy-car.vue'
 import confirmMessage from '../components/shop/pages/03-confirm-message.vue'
+import Pay from '../components/shop/pages/04-pay.vue'
 import personSpace from '../components/person-space/person-space.vue'
 
 /* 个人中心路由 */
@@ -34,6 +44,8 @@ import orderList from '../components/supplier/supplier-select/order/list.vue'
 import orderSaled from '../components/supplier/supplier-select/order/saled.vue'
 import supplyList from '../components/supplier/supplier-select/supply/list.vue'
 import supplyRelease from '../components/supplier/supplier-select/supply/release.vue'
+import agritainmentAdd from '../components/supplier/supplier-select/agritainment/agritainment-add.vue'
+import agritainmentList from '../components/supplier/supplier-select/agritainment/agritainment-list.vue'
 /* 供货商界面 */
 
 Vue.use(Router)
@@ -60,6 +72,16 @@ export default new Router({
 			  name:'Supply',
 			  component:Supply
 		  },
+		  {
+			path:'agritainment',//path最左侧的/永远代表根路由
+			name:'Agritainment',
+			component:Agritainment
+		  },
+		  {
+			path:'agritainmentDetail',//path最左侧的/永远代表根路由
+			name:'agritainmentDetail',
+			component:agritainmentDetail
+		  },
 	  ]
 	},
 	{//登陆页面
@@ -83,6 +105,27 @@ export default new Router({
 		},
 	  ]	
 	},
+	{//管理员登陆页面
+	  path: '/adminlogin',
+	  component:adminLogin,
+	  children:[
+		{
+			path:'',//path最左侧的/永远代表根路由
+			name:'adminVaildCodeLogin',
+			component:adminVaildCodeLogin
+		},
+		{
+			path:'admincodelogin',        //省略写法，去掉斜杠
+			name:'adminCodeLogin',
+			component:adminCodeLogin
+		},
+		{
+			path:'adminuserregister',        //省略写法，去掉斜杠
+			name:'adminUserRegister',
+			component:adminUserRegister
+		}
+	  ]	
+	},
 	{//商品详情页面
 	  path: '/shop',
 	  name: 'shop',
@@ -101,6 +144,11 @@ export default new Router({
 			 path:'confirmMessage',
 			 name:'confirmMessage',
 			 component:confirmMessage 
+		  },
+		  {
+		  	path:'pay',        //省略写法，去掉斜杠
+		  	name:'Pay',
+		  	component:Pay
 		  },
 	  ]
 	},
@@ -180,7 +228,17 @@ export default new Router({
 		  {
 			 path:'/supplier/supplyrelease',//path最左侧的/永远代表根路由
 			 name:'supplyRelease',
-			 component:supplyRelease 
+			 component:supplyRelease  //agritainmentList
+		  },
+		  {
+			 path:'/supplier/agritainmentList',//path最左侧的/永远代表根路由
+			 name:'agritainmentList',
+			 component:agritainmentList  //agritainmentList
+		  },
+		  {
+			 path:'/supplier/agritainmentAdd',//path最左侧的/永远代表根路由
+			 name:'agritainmentAdd',
+			 component:agritainmentAdd  //agritainmentList
 		  },
 		  
 	  ]

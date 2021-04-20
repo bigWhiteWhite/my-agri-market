@@ -26,7 +26,7 @@
 				      </el-menu-item>
 				      <el-menu-item index="/personspace/Purchase">
 				        <i class="iconfont icon-kucunguanli"></i>
-				        <span slot="title">已买到的货品</span>
+				        <span slot="title">我的订单</span>
 				      </el-menu-item>
 					  <el-menu-item index="/personspace/refund">
 					    <i class="iconfont icon-gangweiguanli"></i>
@@ -34,7 +34,7 @@
 					  </el-menu-item>
 					  <el-menu-item index="/personspace/buikPurchase">
 					    <i class="iconfont icon-kucunshishezhi"></i>
-					    <span slot="title">代发批量下单</span>
+					    <span slot="title">未付款</span>
 					  </el-menu-item>
 					  <el-menu-item index="/personspace/favorite">
 					    <i class="iconfont icon-xihuan"></i>

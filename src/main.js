@@ -10,6 +10,7 @@ import axios from 'axios'			//插入依赖
 Vue.prototype.$axios = axios	
 axios.defaults.baseURL = '/api'
 
+import './index.css'
 
 //字体图标
 import '../static/icon/iconfont.css'

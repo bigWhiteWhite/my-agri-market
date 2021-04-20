@@ -24,11 +24,11 @@
 						<el-menu-item index="1">首页</el-menu-item>
 						<el-menu-item index="2">个人中心</el-menu-item>
 						<el-menu-item index="3">供应商后台</el-menu-item>
+						<el-menu-item index="4">我的购物车</el-menu-item>
 						<el-submenu index="3">
 						<template slot="title">我的工作台</template>
 							<el-menu-item index="2-1">微信公众号</el-menu-item>
 							<el-menu-item index="2-2">微信小程序</el-menu-item>
-							<el-menu-item index="2-3">选项3</el-menu-item>
 						</el-submenu>
 					</el-menu>
 			</div>
@@ -76,12 +76,28 @@ export default {
 					if(this.$store.state.currentUser.role === 1){//说明role是普通用户
 						this.$router.push('/personspace/shouye')
 					}
+					if(this.$store.state.currentUser.role === 2){//说明role是商家用户
+						this.$router.push('/personspace/shouye')
+					}
 				}else{
 					this.$router.push('/login')
 				}
 			}
 			if(key === '3' && this.$route.path !== '/supplier'){//为了防止多次点击首页引起错误，也就是不能首页跳到首页
-				this.$router.push('/supplier')
+				//this.$router.push('/adminlogin')
+				if(this.$store.state.isLogin === true && this.$store.state.currentUser){//这里不仅要要求是登陆状态，
+					if(this.$store.state.currentUser.role === 2){//说明role是商家用户
+						this.$router.push('/supplier')
+					}
+				}else{
+					this.$router.push('/adminlogin')
+				}
+			}
+			if(key === '4'){//为了防止多次点击首页引起错误，也就是不能首页跳到首页
+				//this.$router.push('/adminlogin')
+				if(this.$store.state.isLogin === true && this.$store.state.currentUser){//这里不仅要要求是登陆状态，
+					this.$router.push({name:"buyCar"})
+				}
 			}
 		},
 		handleCommand(command){
@@ -108,7 +124,7 @@ export default {
 	},
 	mounted() {
 		if(this.$store.state.isLogin === true && this.$store.state.currentUser){//这里不仅要要求是登陆状态，
-			if(this.$store.state.currentUser.role === 1){//说明role是普通用户
+			if(this.$store.state.currentUser.role){//说明role是普通用户
 				this.User = this.$store.state.currentUser
 			}
 		}

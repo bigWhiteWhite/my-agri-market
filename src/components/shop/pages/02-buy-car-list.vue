@@ -108,6 +108,7 @@ export default {
 	mounted() {
 		this.$axios.get('/cart/list')//渲染购物车列表
 		.then(res=>{
+			console.log("购物车")
 			console.log(res)
 			this.$store.state.carShop = res.data.data
 			console.log(this.$store.state.carShop)
@@ -115,7 +116,7 @@ export default {
 		.catch(err=>{
 			console.log(err)
 		})
-		checkItem = document.getElementsByName("checkItem")
+		let checkItem = document.getElementsByName("checkItem")
 		let selectAll = document.getElementsByName("select-all")
 		checkItem.forEach(item=>{//改变全选按钮
 			if(item.checked === false){
@@ -125,7 +126,6 @@ export default {
 				return
 			}
 		})
-		let checkItem = document.getElementsByName("checkItem")
 		this.$store.state.allNum = 0
 		this.$store.state.carShop.forEach((item,index)=>{//很重要，循环遍历购物车，判断谁的selected是1，改变单选框的状态
 			if(item.selected === 1){

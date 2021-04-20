@@ -6,22 +6,23 @@
 			</div>
 			<div class="wrap" v-for="(item,index) in message" :key='index'>
 				<div class="item" >
-					<div class="image"><img :src="item.image" alt=""></div>
+					<div class="image"><img :src="item.imageList[0]" alt=""></div>
 					<div class="inner">
-						<div class="name">商品id：{{item.pid}}</div>
-						<div class="name">商品名：{{item.name}}</div>
-						<div class="price">单价：￥{{item.price/100}}</div>
-						<div class="quantity">单位：{{item.unit}}</div>
+						<div class="name">农家乐名：{{item.name}}</div>
+						<div class="name">农家乐简介：{{item.detail}}</div>
+						<div class="name">农家乐地址：{{item.address}}</div>
+						<div class="name">联系电话：{{item.phone}}</div>
+						<div class="quantity">农家特色：{{item.pattern}}</div>
 					</div>
 					<div>
 						<el-popconfirm
 						  confirm-button-text='是的'
-						  cancel-button-text='我再想想' @confirm='deleteShop(item.pid)'
+						  cancel-button-text='我再想想' @confirm='deleteShop(item.id)'
 						  icon="el-icon-info"
 						  icon-color="red"
-						  title="确定下架这个商品吗？"
+						  title="确定下架这个农家乐吗？"
 						>
-						  <el-button slot="reference">下架商品</el-button>
+						  <el-button slot="reference">下架农家乐</el-button>
 						</el-popconfirm>
 					</div>
 				</div>
@@ -59,9 +60,9 @@ export default {
 			let params = new URLSearchParams
 			params.append('pageNum',this.currentPage)
 			params.append('pageSize',5)
-			this.$axios.get('/shop/product/list',{params})
+			this.$axios.get('/shop/agritainment/list',{params})
 			.then(res=>{
-				//console.log(res.data.data.list)
+				console.log(res.data.data.list)
 				this.message = res.data.data.list
 			})
 			.catch(err=>{
@@ -71,9 +72,10 @@ export default {
 		deleteShop(pid){
 			//console.log(pid)
 			let params = new URLSearchParams
-			params.append('pid',pid)
-			this.$axios.post('/shop/product/delete',params)
+			params.append('AId',pid)
+			this.$axios.post('/shop/agritainment/delete',params)
 			.then(res=>{
+				console.log(res)
 				console.log(res.data.status===10000)
 				if(res.data.status===10000){
 					this.showList()

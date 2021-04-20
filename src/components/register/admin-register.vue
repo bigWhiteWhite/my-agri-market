@@ -19,7 +19,7 @@
 		</div>
 		<!-- 选择验证码还是密码登陆按钮 -->
 		<div class="switch">
-			<span style="cursor: pointer;"><router-link :to="{name:'codeLogin'}">立刻登录</router-link></span>
+			<span style="cursor: pointer;"><router-link :to="{name:'adminCodeLogin'}">立刻登录</router-link></span>
 		</div>
 		<button class="userregister" @click="user_register">
 			<a >注册<i class="iconfont icon-play-times"></i></a><!-- //personspace -->
@@ -60,12 +60,13 @@
 							document.querySelectorAll('.user-register  .alert')[1].style.display = 'none'
 							document.querySelectorAll('.user-register  .alert')[2].style.display = 'none'
 							this.data = res.data
+							//console.log()
 						}else{
 							document.querySelectorAll('.user-register  .alert')[0].style.display = 'none'
 							document.querySelectorAll('.user-register  .alert')[1].style.display = ''
 							document.querySelectorAll('.user-register  .alert')[2].style.display = 'none'
 							this.data = res.data
-							this.$router.push('/login')
+							this.$router.push('/adminlogin')
 						}
 					
 					})  

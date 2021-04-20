@@ -15,7 +15,7 @@
 				  <el-menu-item index="supply">
 					  <i class="iconfont icon-nav_home-active"></i>供应大厅
 				  </el-menu-item>
-				  <el-menu-item index="3"><i class="iconfont icon-wendang"></i>农家乐</el-menu-item>
+				  <el-menu-item index="agritainment"><i class="iconfont icon-wendang"></i>农家乐</el-menu-item>
 				</el-menu>
 			</div>
 		</div>
@@ -42,6 +42,9 @@ export default {
 	  },
 	  gosupply(){
 		  this.$router.push({name:"Supply"})
+	  },
+	  goAgritainment(){
+			this.$router.push({name:"Agritainment"})
 	  }
   }
  

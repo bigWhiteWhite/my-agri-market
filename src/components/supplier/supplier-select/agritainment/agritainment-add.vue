@@ -2,37 +2,22 @@
 	<div class="index">
 		<div class="bg">
 			<div class="from">
-				<h3>添加商品</h3>
+				<h3>添加农家乐</h3>
 				<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-				  <el-form-item label="商品名称" prop="name">
+				  <el-form-item label="农家乐名" prop="name">
 				    <el-input v-model="ruleForm.name"></el-input>
 				  </el-form-item>
-				  <el-form-item label="商品描述" prop="detail">
+				  <el-form-item label="农家乐简介" prop="detail">
 				    <el-input v-model="ruleForm.detail"></el-input>
 				  </el-form-item>
-				  <el-form-item label="商品单价" prop="price">
-				    <el-input v-model="ruleForm.price"></el-input>
+				  <el-form-item label="农家乐地址" prop="address">
+				    <el-input v-model="ruleForm.address"></el-input>
 				  </el-form-item>
-				  <el-form-item label="商品库存" prop="stock">
-				    <el-input v-model="ruleForm.stock"></el-input>
+				  <el-form-item label="联系电话" prop="phone">
+				    <el-input v-model="ruleForm.phone"></el-input>
 				  </el-form-item>
-				  <el-form-item label="商品单位" prop="unit" >
-				    <el-input v-model="ruleForm.unit" placeholder="如:元/头"></el-input>
-				  </el-form-item>
-				  <el-form-item label="商品属性"><!--  prop="propertyMap"  -->
-				    <el-input v-model="propertyMap[0].name" placeholder="属性名 如:品种"></el-input>
-					<el-input v-model="propertyMap[0].value" placeholder="属性值 如:公猪苗"></el-input>
-				  </el-form-item>
-				  <el-form-item label="商品属性" >
-				    <el-input v-model="propertyMap[1].name" placeholder="属性名 如:公母"></el-input>
-					<el-input v-model="propertyMap[1].value" placeholder="属性值 如:公"></el-input>
-				  </el-form-item>
-				  <el-form-item label="商品属性"  >
-				    <el-input v-model="propertyMap[2].name" placeholder="属性名 如:地区"></el-input>
-					<el-input v-model="propertyMap[2].value" placeholder="属性值 如:广东"></el-input>
-				  </el-form-item>
-				  <el-form-item label="配送邮费" prop="postage">
-				    <el-input v-model="ruleForm.postage"></el-input>
+				  <el-form-item label="特色" prop="pattern" >
+				    <el-input v-model="ruleForm.pattern" placeholder="如:北京烤鸭"></el-input>
 				  </el-form-item>
 				  <el-upload
 					  class="upload-demo"
@@ -49,7 +34,7 @@
 					  </div>
 					</el-upload>
 					<el-form-item>
-					    <el-button type="primary" @click="submitForm('ruleForm')">上传商品</el-button>
+					    <el-button type="primary" @click="submitForm('ruleForm')">上传农家乐信息</el-button>
 					    <el-button @click="resetForm('ruleForm')">重置</el-button>
 					</el-form-item>
 				</el-form>
@@ -70,10 +55,9 @@ export default {
       		ruleForm: {
       		          name: '',
       		          detail:'',
-					  price:'',
-					  stock:'',
-					  postage:'',
-					  unit:'',
+					  address:'',
+					  phone:'',
+					  pattern:'',
 			},
 			propertyMap:[
 				{name:"",value:""},
@@ -82,33 +66,27 @@ export default {
 			],
 			rules: {
 			  name: [
-				{ required: true, message: '请输入商品名称', trigger: 'blur' },
+				{ required: true, message: '请输入农家乐名称', trigger: 'blur' },
 				//{ min: 3, max: 5, message: '长度在 3 到 10个字符', trigger: 'blur' }
 			  ],
 			  detail: [
-				{ required: true, message: '请输入商品详情', trigger: 'blur' },
+				{ required: true, message: '请输入农家乐名详情', trigger: 'blur' },
 				//{ min: 3, max: 5, message: '长度在 3 到 20个字符', trigger: 'blur' }
 			  ],
-			  price: [
-				{ required: true, message: '请输入商品价格', trigger: 'blur' },
+			  address: [
+				{ required: true, message: '请输入农家乐地址', trigger: 'blur' },
 				//{ min: 3, max: 5, message: '长度在 3 到 20个字符', trigger: 'blur' }
 			  ],
-			  stock: [
-				{ required: true, message: '请输入商品库存', trigger: 'blur' },
+			  phone: [
+				{ required: true, message: '请输入联系电话', trigger: 'blur' },
 				//{ min: 3, max: 5, message: '长度在 3 到 20个字符', trigger: 'blur' }
 			  ],
-			  postage: [
-					{ required: true, message: '请输入邮费', trigger: 'blur' },
+
+			  pattern: [
+					{ required: true, message: '请输入特色', trigger: 'blur' },
 					//{ min: 3, max: 5, message: '长度在 3 到 20个字符', trigger: 'blur' }
 			  ],
-			  unit: [
-					{ required: true, message: '请输入单位', trigger: 'blur' },
-					//{ min: 3, max: 5, message: '长度在 3 到 20个字符', trigger: 'blur' }
-			  ],
-			  propertyMap: [
-					{ required: true, message: '请输入商品属性', trigger: 'blur' },
-					//{ min: 3, max: 5, message: '长度在 3 到 20个字符', trigger: 'blur' }
-			  ],
+
 			}
     	}
   	},
@@ -118,35 +96,8 @@ export default {
 		},
 		submitForm(formName) {
 			this.$refs[formName].validate((valid) => {
-				
-				/* this.$axios.post('/shop/product/add',{
-					"category_id": 13,
-					"detail": "23123",
-					"image": [
-						"http://8.140.117.209:8081/images/3ab7a3db-e64c-4faf-ade8-6851785c10e9.jpg"
-					],
-					"name": "123123",
-					"postage": 123,
-					"price": 123,
-					"propertyMap":{
-						"种猪": "123",
-						"种猪": "123",
-						"种猪": "123"
-					},//
-					"stock": 11,
-					"unit": "123"
-				})
-				.then(res=>{
-					console.log(res)
-				})
-				.catch(err=>{
-					
-				}) */
 			  if (valid) {
-				this.$message({
-				  type: 'success',
-				  message: '商品上传成功'
-				})
+				
 				console.log(this.ruleForm)
 				let postage = parseInt(this.ruleForm.postage)
 				let price = parseInt(this.ruleForm.price)
@@ -160,37 +111,24 @@ export default {
 				mypropertyMap[propertyMap00] = this.propertyMap[0].value
 				mypropertyMap[propertyMap01] = this.propertyMap[1].value
 				mypropertyMap[propertyMap02] = this.propertyMap[2].value
-				
-				/* console.log("this.ruleForm.detail")
-				console.log(this.ruleForm.detail)
-				console.log("this.imgsrc")
-				console.log(this.imgsrc)
-				console.log("postage")
-				console.log(postage)
-				console.log("price")
-				console.log(price)
-				console.log("mypropertyMap")
-				console.log(mypropertyMap)
-				console.log("stock")
-				console.log(stock)
-				console.log("this.ruleForm.unit")
-				console.log(this.ruleForm.unit) */
-				
-				this.$axios.post('/shop/product/add',{
-					"category_id": 13,
-					"detail": this.ruleForm.detail,
-					"image": [
-						this.imgsrc
-					],
-					"name": this.ruleForm.name,
-					"postage": postage,
-					"price": price,
-					"propertyMap":mypropertyMap,//
-					"stock": stock,
-					"unit": this.ruleForm.unit
-				})
+			
+				this.$axios.post('/shop/agritainment/add',
+					{
+					  "address": this.ruleForm.address,
+					  "detail": this.ruleForm.detail,
+					  "imageList": [
+					    this.imgsrc
+					  ],
+					  "name": this.ruleForm.name,
+					  "pattern":this.ruleForm.pattern,
+					  "phone": this.ruleForm.phone
+					})
 				.then(res=>{
 					console.log(res)
+					this.$message({
+					  type: 'success',
+					  message: '商品上传成功'
+					})
 				})
 				.catch(err=>{
 					
@@ -206,6 +144,7 @@ export default {
 			this.$refs[formName].resetFields();
 		},
 		 uploadImg(item) {
+			 console.log(item)
 		      var isFlag = (item.file.type == 'image/jpeg' || item.file.type == 'image/png')? true : false;
 		      if(!isFlag){
 		        this.$message({
@@ -218,7 +157,8 @@ export default {
 		      formData.append('file', item.file);//若查看可使用 formData.get('file')
 		      this.$axios.post('/shop/upload/file',formData)
 			  .then(res => {
-				  console.log(res.data.data[0])
+				  console.log(123)
+				  console.log(res)
 				  this.imgsrc = res.data.data[0]
 		        var res = res.data;
 		        if(res.status == 10000){
@@ -236,11 +176,11 @@ export default {
 
 <style lang="scss" scoped>
 .index{
+	padding: 20px;
 	.bg{
 		width: 100%;
 		height: 100%;
 		padding: 20px;
-		border: 1px solid red;
 		.from{
 			width: 500px;
 			.upload-demo{

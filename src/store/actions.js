@@ -74,6 +74,11 @@ export default {
 					selectAll[1].checked = false
 					return
 				}
+				else if(item.checked === true){
+					this.state.allSelect=true
+					selectAll[0].checked = true
+					selectAll[1].checked = true
+				}
 			})
 			this.dispatch('allPrice')		//计算购物车总价
 			

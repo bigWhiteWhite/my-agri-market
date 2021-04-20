@@ -51,5 +51,7 @@ export default {
 	},
 	tableData:[],//用户所有地址
 	/* 用户修改地址信息 */
-	
+	/* 查看订单状态 */
+	saledStatus:0
+	/* 查看订单状态 */
 }

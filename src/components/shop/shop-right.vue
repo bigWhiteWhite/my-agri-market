@@ -52,15 +52,15 @@
 			<span class="specs">规格选择:</span>
 			<ul class="eye-flex-wrap">
 				<li class="eye-renderer__item" style="width:25%;">
-					 <el-button type="success" plain>可爱儿童</el-button>
+					 <el-button type="success" plain>100</el-button>
 				</li>
 			</ul>
 		</div>
 		<!-- 下单按钮 -->
 		<div class="action">
-			<el-button type="info">电话询问</el-button>
+			<el-button type="info">立刻下单</el-button>
 			<el-button type="danger" @click="goCar()">
-				立刻采购
+				加入购物车
 			</el-button>
 		</div>
 	</div>
@@ -85,6 +85,8 @@
 		},
 		mounted() {
 			this.productId = this.$route.query.pid
+			console.log("pid")
+			console.log(this.$route.query.pid)
 			var params = new URLSearchParams()
 			params.append("pid",this.$route.query.pid)
 			this.$axios.post('/product/detail/',params)
